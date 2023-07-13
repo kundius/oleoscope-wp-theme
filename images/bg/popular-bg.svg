@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #f8b13a;
+      }
+
+      .cls-1 {
+        opacity: 0.1;
+      }
+
+      .cls-2 {
+        opacity: 0.2;
+      }
+    </style>
+  </defs>
+  <circle id="ellipse-small" class="cls-1" cx="75" cy="75" r="75"/>
+  <circle id="ellipse-big" class="cls-2" cx="76" cy="77" r="25"/>
+</svg>

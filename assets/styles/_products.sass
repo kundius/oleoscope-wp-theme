@@ -1,0 +1,51 @@
+.page-products
+
+  label
+    color: $dark-gray
+
+  article .entry-content,
+  .chart-content
+    color: $dark-gray
+    font-size: 1rem
+    line-height: 1.25
+    letter-spacing: 0.75px
+
+.page-template-page-products.page
+  .site-main
+    @include media-breakpoint-up(md)
+      padding: 15px 15px 0
+
+.products-list
+
+.products-item
+  display: flex
+  text-decoration: none
+  align-items: center
+  margin-bottom: 1em
+  padding-bottom: 10px
+  padding-left: 0
+  border-bottom: 2px solid #eeeeee
+
+.products-item__image
+  width: 90px
+  height: 90px
+  flex-shrink: 0
+  margin-right: 20px
+  border-radius: 50%
+  overflow: hidden
+  position: relative
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, .25)
+  img
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    height: 100%
+    width: auto
+    max-width: initial
+
+.products-item__name
+  color: rgb(98, 99, 99)
+  font-size: 16px
+  letter-spacing: 0.75px
+  line-height: 1.25

@@ -1,0 +1,122 @@
+.page-prices
+
+  label
+    color: $dark-gray
+
+  article .entry-content,
+  .chart-content
+    color: $dark-gray
+    font-size: 1rem
+    line-height: 1.25
+    letter-spacing: 0.75px
+
+.site-main .entry-content .prices-menu
+  color: #626363
+  list-style: none
+  li
+    margin-bottom: 1em
+    padding-left: 0
+    border-bottom: 2px solid #eeeeee
+    &:before
+      content: ''
+    &:nth-child(1) a:before
+      background-position: -11px -10px
+    &:nth-child(2) a:before
+      background-position: -12px -107px
+    &:nth-child(3) a:before
+      background-position: -12px -206px
+    &:nth-child(4) a:before
+      background-position: -12px -307px
+    &:nth-child(5) a:before
+      background-position: -12px -413px
+
+  a
+    $width: 110px
+    $height: 102.5px
+    position: relative
+    display: block
+    min-height: $height
+    color: inherit
+    padding: 30px 25px 30px $width
+    &:before
+
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      display: block
+      width: 90px
+      height: 90px
+      background: url(../images/icons/prices-icons.png) no-repeat
+      background-size: 110px auto
+      box-shadow: 0 7px 10px rgba(0, 1, 1, 0.2)
+      border-radius: 50%
+
+
+
+
+
+.page-template-page-prices.page
+  .site-main
+    @include media-breakpoint-up(md)
+      padding: 15px 15px 0
+
+.table-responsive
+  .table
+    th:first-child, td:first-child
+      background-color: white
+      position: sticky
+      left: 0
+
+
+.price-table
+  width: 100% !important
+  display: block
+  tr
+    &:last-child
+      td
+        border-bottom: none
+  td, th
+    padding: 5px
+    @include media-breakpoint-up(md)
+      padding: 15px 10px
+    //font
+    font-size: 13px
+    font-weight: bold
+    font-style: normal
+    line-height: 1
+    letter-spacing: 0.65px
+    color: $light-gray
+    &:last-child
+      border-right: none
+    &:nth-child()
+      @include media-breakpoint-down(md)
+        display: none
+    .plus
+      color: $green
+    .minus
+      color: $red // #b93535
+
+  thead
+    height: 70px
+    border-radius: 4px
+    background-color: $oil-light
+  tbody
+    tr // градиент при наведении
+      &:hover
+        background-image: linear-gradient(to right, lighten($green,60%) 0%, lighten($green,100%) 65%)
+        border-left: 3px solid $orange
+  th
+    background-color: $oil-light
+    border-right: 2px solid desaturate(darken($oil-light, 8%), 15%)
+  td
+    border-right: 2px solid #eeeeee
+    border-bottom: 2px solid #eeeeee
+  &-big
+    th
+      @include media-breakpoint-up(md)
+        padding: 15px 5px
+    td
+      @include media-breakpoint-up(md)
+        padding: 10px 5px
+
