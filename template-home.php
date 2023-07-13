@@ -1,3 +1,8 @@
+<?php
+/*
+Template Name: Главная
+*/
+?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
   <head>

@@ -1,9 +1,3 @@
 {
-	"presets": ["env"],
-	"plugins": [
-		["transform-react-jsx",
-		{
-			"pragma": "wp.element.createElement"
-		}]
-	]
+  "presets": ["@babel/preset-env"]
 }
