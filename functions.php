@@ -1,24 +1,38 @@
 <?php
 
 // THEME
-\add_image_size('theme-medium', 600, 400, true);
+// \add_image_size('theme-medium', 600, 400, true);
 \add_theme_support('align-wide');
 \add_theme_support('responsive-embeds');
 \add_theme_support('editor-styles');
 \add_theme_support('wp-block-styles');
-\add_theme_support('post-thumbnails');
-\add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'script', 'style']);
+// \add_theme_support('post-thumbnails');
+// \add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'script', 'style']);
 \add_post_type_support('page', ['excerpt']);
 
 
 // MENU
+load_theme_textdomain( 'oleoscope', get_template_directory() . '/languages' );
 add_theme_support('menus');
+add_theme_support( 'automatic-feed-links' );
+// add_theme_support( 'title-tag' );
+add_theme_support( 'post-thumbnails' );
+set_post_thumbnail_size( 1200, 9999 );
+add_image_size( 'post-thumbnail', 390, 280, true );
+
 register_nav_menus([
-    'menu-main' => 'Основное меню',
-    'menu-footer' => 'Меню в подвале',
-    'menu-sitemap' => 'Карта сайта',
+    'menu-1' => esc_html__( 'Primary', 'oleoscope' ),
+    'menu-2' => esc_html__( 'Secondary', 'oleoscope' ),
+    'menu-social' => esc_html__( 'Social', 'oleoscope' ),
 ]);
 
+add_theme_support('html5', [
+    'search-form',
+    'comment-form',
+    'comment-list',
+    'gallery',
+    'caption',
+]);
 
 // ADMIN PANEL
 \add_action('admin_init', function() {
@@ -215,12 +229,12 @@ add_filter('stylesheet_uri', function (string $stylesheet_uri) {
 
     return $stylesheet_uri;
 });
-add_action('init', function () {
-    if (!\is_admin()) {
-        \wp_deregister_script('jquery');
-        \wp_register_script('jquery', false);
-    }
-});
+// add_action('init', function () {
+//     if (!\is_admin()) {
+//         \wp_deregister_script('jquery');
+//         \wp_register_script('jquery', false);
+//     }
+// });
 
 
 // AJAX
@@ -263,3 +277,4 @@ function get_attachment_callback() {
 //     'capability' => 'edit_posts',
 //     'redirect' => false,
 // ));
+

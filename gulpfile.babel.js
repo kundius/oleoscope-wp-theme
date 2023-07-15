@@ -17,12 +17,13 @@ import concat from "gulp-concat";
 const server = browserSync.create();
 const PRODUCTION = yargs.argv.prod;
 const sass = gulpSass(dartSass);
-
 export const stylesTask = () => {
   return src([
     "node_modules/normalize.css/normalize.css",
     "node_modules/hystmodal/dist/hystmodal.min.css",
     "node_modules/swiper/swiper-bundle.min.css",
+    "node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css",
+    "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
     // "node_modules/swiper/modules/pagination/pagination.min.css",
     // "node_modules/swiper/modules/effect-fade/effect-fade.min.css",
     // "node_modules/swiper/modules/thumbs/thumbs.min.css",
@@ -74,6 +75,10 @@ export const fontsTask = () => {
   return src("src/fonts/**/*.{ttf,woff,woff2}").pipe(dest("dist/fonts"));
 };
 
+export const fontsAwesomeTask = () => {
+  return src("node_modules/@fortawesome/fontawesome-free/webfonts/*.{ttf,woff,woff2}").pipe(dest("dist/webfonts"));
+};
+
 export const cleanTask = () => del(["dist"]);
 
 export const watchTask = () => {
@@ -102,14 +107,14 @@ export const reloadTask = (done) => {
 
 export const dev = series(
   cleanTask,
-  parallel(stylesTask, imagesTask, fontsTask, scriptsTask),
+  parallel(stylesTask, imagesTask, fontsAwesomeTask, fontsTask, scriptsTask),
   serveTask,
   watchTask
 );
 
 export const build = series(
   cleanTask,
-  parallel(stylesTask, imagesTask, fontsTask, scriptsTask)
+  parallel(stylesTask, imagesTask, fontsAwesomeTask, fontsTask, scriptsTask)
 );
 
 export default dev;
