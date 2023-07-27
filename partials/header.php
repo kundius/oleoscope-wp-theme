@@ -15,7 +15,7 @@
             <div class="header-main__subscribe">
                 <a href="/about/subscription" class="header-subscribe">
                     <span class="header-subscribe__icon" aria-hidden="true">
-                        <i class="fa-solid fa-droplet"></i>
+                        <i class="fa-solid fa-tint fa-lg"></i>
                     </span>
                     <span class="header-subscribe__content">
                         <span class="header-subscribe__title">

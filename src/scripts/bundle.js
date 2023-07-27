@@ -1,27 +1,32 @@
-import Swiper, { EffectCoverflow, Navigation } from "swiper";
+import Swiper, { EffectCoverflow, EffectCreative, Pagination, Navigation } from "swiper";
 import HystModal from "hystmodal";
 
-const rulesModal = new HystModal({
+new HystModal({
   linkAttributeName: "data-hystmodal",
 });
 
-const swiper = new Swiper(".mySwiper", {
-  modules: [EffectCoverflow, Navigation],
-  effect: "coverflow",
+new Swiper(".nav-slider .swiper", {
+  modules: [Navigation],
   speed: 500,
+  spaceBetween: 6,
   loop: true,
-  grabCursor: true,
-  centeredSlides: true,
+  // grabCursor: true,
   slidesPerView: "auto",
-  coverflowEffect: {
-    rotate: 0,
-    stretch: 180,
-    depth: 290,
-    modifier: 1,
-    slideShadows: true,
-  },
   navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
+    nextEl: ".nav-slider-button-prev",
+    prevEl: ".nav-slider-button-next",
+  },
+});
+
+new Swiper(".masthead-news .swiper", {
+  modules: [Pagination],
+  speed: 500,
+  spaceBetween: 12,
+  loop: true,
+  // grabCursor: true,
+  slidesPerView: "auto",
+  pagination: {
+    clickable: true,
+    el: ".swiper-pagination",
   },
 });
