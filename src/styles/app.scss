@@ -4,8 +4,6 @@
 @import 'fonts';
 @import 'home';
 
-// @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -29,6 +27,11 @@ img {
   padding-right: 24px;
   max-width: 100%;
   box-sizing: border-box;
+
+  @include mobile {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }
 
 .main {
