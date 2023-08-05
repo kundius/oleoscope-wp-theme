@@ -1,6 +1,8 @@
 @import 'responsive';
 @import 'header';
+@import 'footer';
 @import 'fonts';
+@import 'home';
 
 // @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
@@ -88,15 +90,45 @@ img {
   z-index: 10;
 }
 
-.nav-slider-button-prev i,
-.nav-slider-button-next i {
-  position: relative;
-  z-index: 20;
-}
+// .nav-slider-button-prev i,
+// .nav-slider-button-next i {
+//   position: relative;
+//   z-index: 20;
+// }
 
 .nav-slider-button-next {
   left: auto;
   right: 6px;
+}
+
+.nav-slider-button-prev::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 1px solid transparent;
+  border-left-color: #fff;
+  border-bottom-color: #fff;
+  position: absolute;
+  z-index: 20;
+  margin-left: 2px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.nav-slider-button-next::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 1px solid transparent;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+  position: absolute;
+  z-index: 20;
+  margin-left: -2px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .masthead {

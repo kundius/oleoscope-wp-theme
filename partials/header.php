@@ -45,7 +45,13 @@
                     <i class="fas fa-share-alt"></i>
                 </button>
                 <div class="header-social__links">
-                    links
+                    <?php wp_nav_menu([
+                        'theme_location' => 'menu-social',
+                        'container' => false,
+                        'menu_id' => 'footer-social',
+                        'menu_class' => 'footer-social',
+                        'depth' => 1,
+                    ]); ?>
                 </div>
             </div>
         </div>
