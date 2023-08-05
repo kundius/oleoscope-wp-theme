@@ -33,9 +33,9 @@ Template Name: Главная
           </div>
 
           <div class="masthead">
-            <div class="masthead__news">
-              <div class="masthead-news">
-                <div class="masthead-news__title">Новости недели</div>
+            <div class="masthead__primary">
+              <div class="masthead-primary">
+                <div class="masthead-primary__title">Новости недели</div>
                 <div class="swiper">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -83,41 +83,43 @@ Template Name: Главная
                 </div>
               </div>
             </div>
-            <div class="masthead__interview">
-              <div class="masthead-interview">
-                <div class="masthead-interview__title">
-                  Интервью
-                </div>
-                <div class="masthead-secondary-item">
-                  <div class="masthead-secondary-item__image">
-                    <img src="<?php bloginfo('template_url') ?>/dist/images/Layer_4.png" alt="">
+            <div class="masthead__secondary">
+              <div class="masthead__secondary-cell">
+                <div class="masthead-secondary">
+                  <div class="masthead-secondary__title">
+                    Интервью
                   </div>
-                  <div class="masthead-secondary-item__content">
-                    <a href="#" class="masthead-secondary-item__title">
-                      Эксперт рассказал, как обнуление вывозной пошлины на масло повлияет на рынок
-                    </a>
-                    <div class="masthead-secondary-item__date">
-                      31.05.2023
+                  <div class="masthead-secondary-item">
+                    <div class="masthead-secondary-item__image">
+                      <img src="<?php bloginfo('template_url') ?>/dist/images/Layer_4.png" alt="">
+                    </div>
+                    <div class="masthead-secondary-item__content">
+                      <a href="#" class="masthead-secondary-item__title">
+                        Эксперт рассказал, как обнуление вывозной пошлины на масло повлияет на рынок
+                      </a>
+                      <div class="masthead-secondary-item__date">
+                        31.05.2023
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="masthead__industry">
-              <div class="masthead-industry">
-                <div class="masthead-industry__title">
-                  Отраслевой календарь
-                </div>
-                <div class="masthead-secondary-item">
-                  <div class="masthead-secondary-item__image">
-                    <img src="<?php bloginfo('template_url') ?>/dist/images/Layer_4.png" alt="">
+              <div class="masthead__secondary-cell">
+                <div class="masthead-secondary">
+                  <div class="masthead-secondary__title">
+                    Отраслевой календарь
                   </div>
-                  <div class="masthead-secondary-item__content">
-                    <a href="#" class="masthead-secondary-item__title">
-                      6-9 июня: XXIV Международный зерновой раунд «Рынок зерна – вчера, сегодня, завтра»
-                    </a>
-                    <div class="masthead-secondary-item__date">
-                      31.05.2023
+                  <div class="masthead-secondary-item">
+                    <div class="masthead-secondary-item__image">
+                      <img src="<?php bloginfo('template_url') ?>/dist/images/Layer_4.png" alt="">
+                    </div>
+                    <div class="masthead-secondary-item__content">
+                      <a href="#" class="masthead-secondary-item__title">
+                        6-9 июня: XXIV Международный зерновой раунд «Рынок зерна – вчера, сегодня, завтра»
+                      </a>
+                      <div class="masthead-secondary-item__date">
+                        31.05.2023
+                      </div>
                     </div>
                   </div>
                 </div>
