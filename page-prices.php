@@ -1,3 +1,8 @@
+<?php
+/* 
+Template Name: Prices 
+*/
+?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
   <head>
@@ -23,11 +28,13 @@
               <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php
-              if (function_exists('dynamic_sidebar')) {
-                dynamic_sidebar('sidebar-default');
-              }
-              ?>
+              <?php wp_nav_menu([
+                'theme_location' => 'menu-prices',
+                'container' => false,
+                'menu_id' => 'menu-prices',
+                'menu_class' => 'side-menu',
+                'depth' => 1,
+              ]); ?>
               <?php // get_template_part('partials/widget-feed') ?>
               <?php // get_template_part('partials/widget-directions') ?>
               <?php // get_template_part('partials/widget-menu-prices') ?>

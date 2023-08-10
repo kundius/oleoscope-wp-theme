@@ -1,3 +1,16 @@
+<?php
+/* 
+Template Name: Products
+*/
+
+$args = array(
+  'post_type' => array('page'),
+  'post_parent' => get_the_ID(),
+  'orderby'   => 'menu_order',
+  'order' => 'ASC',
+);
+$query_child = new WP_Query( $args );
+?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
   <head>
@@ -15,6 +28,18 @@
             <div class="archive-layout__content">
               <?php if (have_posts()): ?>
               <h1><?php the_title() ?></h1>
+              <div class="products-list">
+                <?php while ($query_child->have_posts()): $query_child->the_post(); ?>
+                <a href="<?php the_permalink() ?>" class="products-item">
+                  <?php if ($icon = get_field('thumbnail_in_list')): ?>
+                    <span class="products-item__image">
+                      <img src="<?php echo $icon['sizes']['thumbnail'] ?>" alt="<?php the_title_attribute() ?>">
+                    </span>
+                  <?php endif; ?>
+                  <span class="products-item__name"><?php the_title(); ?></span>
+                </a>
+                <?php endwhile; wp_reset_query(); ?>
+              </div>
               <div class="content">
                 <?php the_content() ?>
               </div>
@@ -25,9 +50,16 @@
             <div class="archive-layout__right sidebar">
               <?php
               if (function_exists('dynamic_sidebar')) {
-                dynamic_sidebar('sidebar-default');
+                dynamic_sidebar('sidebar-products');
               }
               ?>
+              <?php wp_nav_menu([
+                'theme_location' => 'menu-products',
+                'container' => false,
+                'menu_id' => 'menu-products',
+                'menu_class' => 'side-menu',
+                'depth' => 1,
+              ]); ?>
               <?php // get_template_part('partials/widget-feed') ?>
               <?php // get_template_part('partials/widget-directions') ?>
               <?php // get_template_part('partials/widget-menu-prices') ?>

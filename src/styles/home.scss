@@ -2,24 +2,34 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+
+  @include mobile {
+    gap: 0;
+  }
+  @include tablet {
+    gap: 0;
+  }
 }
 
 .home-layout__left {
-  padding-left: 28px;
-  padding-right: 28px;
+  padding-left: 8px;
+  padding-right: 8px;
   padding-top: 28px;
   padding-bottom: 28px;
   flex-basis: calc(25% - 6px);
   flex-grow: 1;
+  border-right: 2px solid #fafafa;
 
   @include mobile {
     flex-basis: calc(50% - 12px);
     order: 2;
     min-width: 280px;
+    border-top: 2px solid #fafafa;
   }
   @include tablet {
     flex-basis: calc(50% - 12px);
     order: 2;
+    border-top: 2px solid #fafafa;
   }
 }
 
@@ -53,58 +63,23 @@
     flex-basis: calc(50% - 12px);
     order: 3;
     min-width: 280px;
+    border-top: 2px solid #fafafa;
   }
   @include tablet {
     flex-basis: calc(50% - 12px);
     order: 3;
+    border-top: 2px solid #fafafa;
   }
-}
-
-.home-layout__feed {}
-
-.home-layout__subscribe {
-  margin-top: 102px;
-}
-
-.home-layout__prices {}
-
-.home-layout__hot {
-  margin-top: 24px;
-}
-
-.home-layout__knowledge {
-  margin-top: 24px;
-}
-
-.home-layout__video {
-  margin-top: 24px;
-}
-
-.widget-side {
-  
-}
-
-.widget-side__title {
-  color: #000000;
-  font-family: "Exo 2.0";
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: -0.63px;
-  min-height: 44px;
-  border-radius: 4px;
-  background-color: #fcc101;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  margin-bottom: 8px;
 }
 
 .video-list {
   
+}
+
+.video-list__item {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .video-list__item + .video-list__item {
@@ -275,6 +250,10 @@
   position: relative;
   padding: 28px 28px 20px;
   z-index: 1;
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
 
 .card-flat__title {
@@ -377,23 +356,23 @@
   align-self: flex-start;
 }
 
-.vertical-menu .menu-item:nth-child(1) a::before {
+.vertical-menu .menu-item a[href*="/prices-russia-database/"]::before {
   background-image: url('../images/icon-menu-1.png');
 }
 
-.vertical-menu .menu-item:nth-child(2) a::before {
+.vertical-menu .menu-item a[href*="/prices-world-database/"]::before {
   background-image: url('../images/icon-menu-2.png');
 }
 
-.vertical-menu .menu-item:nth-child(3) a::before {
+.vertical-menu .menu-item a[href*="/prices-world/"]::before {
   background-image: url('../images/icon-menu-3.png');
 }
 
-.vertical-menu .menu-item:nth-child(4) a::before {
+.vertical-menu .menu-item a[href*="/world-market-balances/"]::before {
   background-image: url('../images/icon-menu-4.png');
 }
 
-.vertical-menu .menu-item:nth-child(5) a::before {
+.vertical-menu .menu-item a[href*="/foreign-trade-database/"]::before {
   background-image: url('../images/icon-menu-5.png');
 }
 
@@ -409,99 +388,33 @@
   margin-top: 46px;
 }
 
-.card-medium {
-  position: relative;
-  z-index: 1;
-}
-
-.card-medium__media {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 20px;
-  display: block;
-  position: relative;
-}
-
-.card-medium__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-}
-
-.card-medium__tags {
-  position: absolute;
-  left: 18px;
-  bottom: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 0;
-  gap: 8px;
-}
-
-.card-medium__tag {
-  color: #242424;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: -0.3px;
-  padding: 2px 12px;
-  min-height: 28px;
-  display: inline-flex;
-  align-items: center;
-  border-radius: 4px;
-  background-color: #fcc101;
-}
-
-.card-medium__date {
-  color: #d6d6d6;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.35px;
-}
-
-.card-medium__title {
-  color: #404040;
-  font-family: "Exo 2.0";
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.2px;
-  margin-top: 8px;
-  text-decoration: none;
-  display: block;
-}
-
-.card-medium__title:hover {
-  text-decoration: underline;
-}
-
-.card-medium__title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .news-feed {
-
+  padding: 15px 20px;
+  
+  @include mobile {
+    padding: 0;
+  }
+  @include tablet {
+    padding: 0;
+  }
 }
 
 .news-feed__item {
   position: relative;
   z-index: 1;
-  border-bottom: 2px solid #eeeeee;
-  padding-bottom: 24px;
-  padding-top: 24px;
 }
 
-.news-feed__item:first-child {
-  padding-top: 15px;
+.news-feed__row::before {
+  content: '';
+  height: 2px;
+  background: #eeeeee;
+  display: block;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+.news-feed__row:first-child::before {
+  display: none;
 }
 
 .news-feed__title {
@@ -535,7 +448,22 @@
   margin-top: 5px;
 }
 
-.widget-subscribe {}
+.widget-subscribe {
+  padding: 48px 32px 25px;
+  margin-left: -8px;
+  margin-right: -8px;
+  border-top: 2px solid #fafafa;
+  border-bottom: 2px solid #fafafa;
+
+  @include mobile {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+  @include tablet {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+}
 
 .widget-subscribe__title {
   color: #393939;

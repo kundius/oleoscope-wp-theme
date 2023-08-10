@@ -1,5 +1,18 @@
 <?php
 
+require 'inc/post-types.php';
+require 'inc/pagination.php';
+require 'inc/shortcodes.php';
+require 'inc/sidebars.php';
+
+function load_template_part($template_name, $part_name = null) {
+    ob_start();
+    get_template_part($template_name, $part_name);
+    $var = ob_get_contents();
+    ob_end_clean();
+    return $var;
+}
+
 // THEME
 // \add_image_size('theme-medium', 600, 400, true);
 \add_theme_support('align-wide');
@@ -9,6 +22,7 @@
 // \add_theme_support('post-thumbnails');
 // \add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'script', 'style']);
 \add_post_type_support('page', ['excerpt']);
+add_filter( 'widget_text', 'do_shortcode' );
 
 
 // MENU
@@ -23,7 +37,9 @@ add_image_size( 'post-thumbnail', 390, 280, true );
 register_nav_menus([
     'menu-1' => esc_html__( 'Primary', 'oleoscope' ),
     'menu-2' => esc_html__( 'Secondary', 'oleoscope' ),
+    'menu-prices' => esc_html__( 'Prices', 'oleoscope' ),
     'menu-social' => esc_html__( 'Social', 'oleoscope' ),
+    'menu-products' => esc_html__( 'Products', 'oleoscope' ),
 ]);
 
 add_theme_support('html5', [
@@ -162,49 +178,6 @@ add_filter('wp_kses_allowed_html', function ($tags) {
         echo '<meta name="description" content="' . $description . '">';
     }
 });
-\add_action('acf/init', function () {
-    \acf_add_local_field_group([
-        'key' => 'group_theme_seo',
-        'title' => 'SEO',
-        'fields' => [
-            [
-                'key' => 'field_theme_seo_title',
-                'label' => 'Заголовок',
-                'name' => 'theme_seo_title',
-                'type' => 'text',
-            ],
-            [
-                'key' => 'field_theme_seo_keywords',
-                'label' => 'Ключевые слова',
-                'name' => 'theme_seo_keywords',
-                'type' => 'text',
-            ],
-            [
-                'key' => 'field_theme_seo_description',
-                'label' => 'Описание',
-                'name' => 'theme_seo_description',
-                'type' => 'textarea',
-                'rows' => 3,
-            ],
-        ],
-        'location' => [
-            [
-                [
-                    'param' => 'post_type',
-                    'operator' => '==',
-                    'value' => 'post',
-                ],
-            ],
-            [
-                [
-                    'param' => 'post_type',
-                    'operator' => '==',
-                    'value' => 'page',
-                ],
-            ],
-        ],
-    ]);
-});
 
 
 // ASSETS
@@ -277,4 +250,41 @@ function get_attachment_callback() {
 //     'capability' => 'edit_posts',
 //     'redirect' => false,
 // ));
+
+add_filter( 'get_the_archive_title', function( $title ){
+    return preg_replace('~^[^:]+: ~', '', $title );
+});
+
+
+// Archives.php only shows content of type 'post', but you can alter it to include custom post types.
+function namespace_add_custom_types($query) {
+    if (is_category()) {
+        $post_type = array(
+            'nav_menu_item', 'news', 'interview', 'analytics', 'partners', 'events' // 'post'
+        );
+        if (get_query_var('post_type')) {
+            $post_type = get_query_var('post_type');
+        }
+        if (isset($query->query_vars['post_type'])) {
+            $post_type = $query->query_vars['post_type'];
+        }
+        $query->set('post_type', $post_type);
+        return $query;
+    }
+}
+add_filter('pre_get_posts', 'namespace_add_custom_types');
+
+
+add_filter('nav_menu_css_class', 'current_type_nav_class', 10, 2);
+function current_type_nav_class($classes, $item) {
+    $post_type = get_query_var('post_type');
+
+		if ($item->type === 'custom') {
+			if ($post_type === trim($item->url, '\/')) {
+				array_push($classes, 'current-menu-item');
+			}
+		}
+
+    return $classes;
+}
 

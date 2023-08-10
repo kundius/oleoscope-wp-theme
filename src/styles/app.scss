@@ -3,6 +3,10 @@
 @import 'footer';
 @import 'fonts';
 @import 'home';
+@import 'archive';
+@import 'cards';
+@import 'prices';
+@import 'products';
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -15,6 +19,19 @@ body {
   background: #fafafa;
 }
 
+h1 {
+  font-size: 32px;
+  line-height: 1.25;
+  margin: 0 0 32px;
+  font-family: "Exo 2.0";
+  font-weight: 500;
+
+  @include mobile {
+    font-size: 28px;
+    // margin: 0 0 28px;
+  }
+}
+
 img {
   max-width: 100%
 }
@@ -22,7 +39,7 @@ img {
 .container {
   margin-left: auto;
   margin-right: auto;
-  width: 1220px;
+  width: 1268px;
   padding-left: 24px;
   padding-right: 24px;
   max-width: 100%;
@@ -41,6 +58,12 @@ img {
 
 .main {
   background: #fff;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .nav-slider {
@@ -413,4 +436,318 @@ img {
   text-transform: uppercase;
   width: 200px;
   padding: 12px;
+}
+
+.siple-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.siple-pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Exo 2.0";
+  font-size: 14px;
+  line-height: 1;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.siple-pagination a.page-numbers {
+  color: #5c9314;
+  text-decoration: none;
+}
+
+.siple-pagination a.page-numbers:hover {
+  background: #fafafa;
+}
+
+.siple-pagination span.page-numbers {
+  color: #939393;
+  cursor: default;
+}
+
+.siple-pagination .next {
+  position: relative;
+  padding-left: 26px;
+}
+
+.siple-pagination .next::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 2px;
+  background: currentColor;
+  position: absolute;
+  left: 8px;
+  top: calc(50% - 3px);
+  border-radius: 2px;
+  transform: rotate(-45deg);
+}
+
+.siple-pagination .next::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 2px;
+  background: currentColor;
+  position: absolute;
+  left: 8px;
+  bottom: calc(50% - 3px);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.siple-pagination .prev {
+  position: relative;
+  padding-right: 26px;
+}
+
+.siple-pagination .prev::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 2px;
+  background: currentColor;
+  position: absolute;
+  right: 8px;
+  top: calc(50% - 3px);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.siple-pagination .prev::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 2px;
+  background: currentColor;
+  position: absolute;
+  right: 8px;
+  bottom: calc(50% - 3px);
+  border-radius: 2px;
+  transform: rotate(-45deg);
+}
+
+.widget-side {
+  
+}
+
+.widget-side__title {
+  color: #000000;
+  font-family: "Exo 2.0";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: -0.63px;
+  min-height: 44px;
+  border-radius: 4px;
+  background-color: #fcc101;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.directions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 24px 0;
+}
+
+.directions-list__item {
+  color: #000000;
+  font-family: "Exo 2.0";
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.8px;
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.directions-list__item:hover {
+  background: #eeeeee;
+}
+
+.details {
+  width: 100%;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.details__media img {
+  max-width: 100%;
+  height: auto;
+}
+
+.details__media {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 48px;
+
+  @include mobile {
+    margin-bottom: 24px;
+  }
+}
+
+.details__date {
+  color: #d2d2d2;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 32px;
+
+  @include mobile {
+    margin-bottom: 16px;
+  }
+}
+
+.details__title {
+}
+
+.content {
+  text-wrap: balance;
+  
+  p {
+    margin: 0;
+  }
+  
+  * + p {
+    margin-top: 24px;
+  }
+  
+  ul {
+    margin: 0;
+  }
+  
+  * + ul {
+    margin-top: 24px;
+  }
+  
+  h2 {
+    font-size: 28px;
+    line-height: 1.25;
+    font-family: "Exo 2.0";
+    font-weight: 500;
+    margin: 0;
+
+    @include mobile {
+      font-size: 24px;
+    }
+  }
+  
+  * + h2 {
+    margin-top: 42px;
+  }
+  
+  h3 {
+    font-size: 24px;
+    line-height: 1.25;
+    font-family: "Exo 2.0";
+    font-weight: 500;
+    margin: 0;
+
+    @include mobile {
+      font-size: 20px;
+    }
+  }
+  
+  * + h3 {
+    margin-top: 36px;
+  }
+  
+  h4 {
+    font-size: 20px;
+    line-height: 1.25;
+    font-family: "Exo 2.0";
+    font-weight: 500;
+    margin: 0;
+
+    @include mobile {
+      font-size: 18px;
+    }
+  }
+  
+  * + h4 {
+    margin-top: 30px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #5c9314;
+  }
+  
+  a:hover {
+    color: #32500b;
+    text-decoration: underline;
+  }
+
+  hr {
+    margin: 24px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    border-right: 0;
+    border-left: 0;
+  }
+}
+
+.sidebar .menu,
+.side-menu {
+  padding: 0;
+  margin: 0 -8px;
+  list-style: none;
+
+  @include mobile {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+  @include tablet {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+}
+
+.sidebar .menu .menu-item,
+.side-menu .menu-item {
+  border-bottom: 2px solid #fafafa;
+}
+
+.sidebar .menu .menu-item:last-child,
+.side-menu .menu-item:last-child {
+  border-bottom: none;
+}
+
+.sidebar .menu .menu-item a,
+.side-menu .menu-item a {
+  display: flex;
+  font-size: 16px;
+  font-family: "Exo 2.0";
+  font-weight: 500;
+  line-height: 1;
+  padding: 6px 24px;
+  text-decoration: none;
+  color: #000000;
+  min-height: 64px;
+  align-items: center;
+}
+
+.sidebar .menu .menu-item.current-menu-item a,
+.side-menu .menu-item.current-menu-item a {
+  color: #5c9314;
+}
+
+.sidebar .menu .menu-item a:hover,
+.side-menu .menu-item a:hover {
+  background: #fafafa;
 }

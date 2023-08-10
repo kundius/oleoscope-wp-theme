@@ -288,6 +288,10 @@
 
 .header-menu > .menu-item > a:hover {
   text-decoration: none;
-  color: #5c9314;
+  // color: #5c9314;
   background: #f9f9f9;
+}
+
+.header-menu > .menu-item.current-menu-item > a {
+  color: #5c9314;
 }

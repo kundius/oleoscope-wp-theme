@@ -82,7 +82,7 @@ export const fontsAwesomeTask = () => {
 export const cleanTask = () => del(["dist"]);
 
 export const watchTask = () => {
-  watch("src/styles/**/*.scss", stylesTask);
+  watch("src/styles/**/*.{scss,css,sass}", stylesTask);
   watch(
     "src/images/**/*.{jpg,jpeg,png,svg,gif}",
     series(imagesTask, reloadTask)

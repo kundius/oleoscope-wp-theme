@@ -14,9 +14,17 @@
           <div class="archive-layout">
             <div class="archive-layout__content">
               <?php if (have_posts()): ?>
-              <h1><?php the_title() ?></h1>
-              <div class="content">
-                <?php the_content() ?>
+              <div class="details">
+                <?php if (has_post_thumbnail()): ?>
+                <figure class="details__media">
+                  <?php the_post_thumbnail('origin'); ?>
+                </figure>
+                <?php endif; ?>
+                <div class="details__date"><?php echo get_the_date('d.m.Y') ?></div>
+                <h1 class="details__title"><?php the_title() ?></h1>
+                <div class="details__content content">
+                  <?php the_content() ?>
+                </div>
               </div>
               <?php else : ?>
               Результатов не найдено
@@ -25,7 +33,7 @@
             <div class="archive-layout__right sidebar">
               <?php
               if (function_exists('dynamic_sidebar')) {
-                dynamic_sidebar('sidebar-default');
+                dynamic_sidebar('sidebar-articles');
               }
               ?>
               <?php // get_template_part('partials/widget-feed') ?>

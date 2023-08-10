@@ -1,0 +1,167 @@
+.card-medium {
+  position: relative;
+  z-index: 1;
+}
+
+.card-medium__media {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+  display: block;
+  position: relative;
+}
+
+.card-medium__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.card-medium__tags {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+}
+
+.card-medium__tag {
+  color: #242424;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.3px;
+  padding: 2px 12px;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #fcc101;
+}
+
+.card-medium__date {
+  color: #d6d6d6;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.35px;
+}
+
+.card-medium__title {
+  color: #404040;
+  font-family: "Exo 2.0";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  margin-top: 8px;
+  text-decoration: none;
+  display: block;
+}
+
+.card-medium__title:hover {
+  text-decoration: underline;
+}
+
+.card-medium__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.card-small {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  border: 2px solid #fafafa;
+
+  @include mobile {
+    padding: 12px;
+  }
+}
+
+.card-small:hover {
+  // background: #fafafa;
+}
+
+.card-small__media {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 22px;
+  display: block;
+  position: relative;
+}
+
+.card-small__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.card-small__tags {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+}
+
+.card-small__tag {
+  color: #242424;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.3px;
+  padding: 2px 12px;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  background-color: #fcc101;
+}
+
+.card-small__date {
+  color: #d6d6d6;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.35px;
+  margin-top: 15px;
+}
+
+.card-small__title {
+  color: #404040;
+  font-family: "Exo 2.0";
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  display: block;
+}
+
+.card-small__title:hover {
+  text-decoration: underline;
+}
+
+.card-small__title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
