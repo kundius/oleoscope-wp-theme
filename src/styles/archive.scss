@@ -7,29 +7,29 @@
 
 .archive-layout__content {
   padding: 24px;
-  flex-basis: 75%;
+  width: 75%;
   flex-grow: 1;
 
   @include mobile {
-    flex-basis: 100%;
+    width: 100%;
     order: 1;
     padding-left: 12px;
     padding-right: 12px;
   }
   @include tablet {
-    flex-basis: 100%;
+    width: 100%;
     order: 1;
   }
 }
 
 .archive-layout__right {
   padding: 24px 8px;
-  flex-basis: 25%;
+  width: 25%;
   flex-grow: 1;
   border-left: 2px solid #fafafa;
 
   @include mobile {
-    flex-basis: 100%;
+    width: 100%;
     order: 2;
     border-left: none;
     border-top: 2px solid #fafafa;
@@ -37,7 +37,7 @@
     padding-right: 12px;
   }
   @include tablet {
-    flex-basis: 100%;
+    width: 100%;
     order: 2;
     border-left: none;
     border-top: 2px solid #fafafa;

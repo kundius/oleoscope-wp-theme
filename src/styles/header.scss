@@ -159,6 +159,18 @@
   font-family: inherit;
   cursor: default;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-social__button::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('../images/icon-share.svg') no-repeat 50% 50%;
+  background-size: contain;
 }
 
 .header-social__button .fas {
@@ -201,6 +213,17 @@
   margin-right: 8px;
   flex-shrink: 0;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-subscribe__icon::before {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 18px;
+  background: url('../images/icon-tint.svg') no-repeat 50% 50%;
+  background-size: contain;
 }
 
 .header-subscribe__content {

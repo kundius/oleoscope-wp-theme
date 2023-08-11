@@ -38,6 +38,8 @@ $last_analytics_query = new WP_Query([
   'orderby' => 'date',
 ]);
 $last_analytics = $last_analytics_query->get_posts();
+
+$categories = get_categories();
 ?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
@@ -55,13 +57,13 @@ $last_analytics = $last_analytics_query->get_posts();
           <div class="nav-slider">
             <div class="swiper">
               <div class="swiper-wrapper">
-                <div class="swiper-slide"><a href="#" class="nav-slider__link">Мировые рынки</a></div>
-                <div class="swiper-slide"><a href="#" class="nav-slider__link">Нормативное регулирование</a></div>
-                <div class="swiper-slide"><a href="#" class="nav-slider__link">Уборочная</a></div>
-                <div class="swiper-slide"><a href="#" class="nav-slider__link">Инвестиции</a></div>
-                <div class="swiper-slide"><a href="#" class="nav-slider__link">Компании</a></div>
-                <div class="swiper-slide"><a href="#" class="nav-slider__link">Цены</a></div>
-                <div class="swiper-slide"><a href="#" class="nav-slider__link">Потребительский рынок</a></div>
+                <?php foreach($categories as $category): ?>
+                  <div class="swiper-slide">
+                    <a href="<?php echo get_category_link($category->term_id) ?>" class="nav-slider__link">
+                      <?php echo $category->name ?>
+                    </a>
+                  </div>
+                <?php endforeach; ?>
               </div>
             </div>
             <div class="nav-slider-button-prev"></div>

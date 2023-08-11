@@ -73,3 +73,37 @@ function video_shortcode($atts, $content = null) {
   return load_template_part('partials/widget-video');
 }
 add_shortcode('video', 'video_shortcode');
+
+
+function products_shortcode($atts, $content = null) {
+  extract(shortcode_atts([], $atts));
+  return load_template_part('partials/products');
+}
+add_shortcode('products', 'products_shortcode');
+
+
+function plot_chart_db_shortcode($atts, $content = null) {
+  $defaults = array('country' => 'World');
+  $atts = shortcode_atts($defaults, $atts);
+  return plot_chart_db($atts['country']);
+}
+add_shortcode('plot_chart_db', 'plot_chart_db_shortcode');
+
+
+function plot_chart_multi_shortcode($atts, $content = null) {
+  $defaults = array('country' => 'World');
+  $atts = shortcode_atts($defaults, $atts);
+  return plot_chart_multi($atts['country']);
+}
+add_shortcode('plot_chart_multi', 'plot_chart_multi_shortcode');
+
+
+function export_csv_shortcode($atts, $content = null) {
+  $defaults = array('country' => 'World');
+  $atts = shortcode_atts($defaults, $atts);
+
+  $stat_id = (int) $_GET['id'];
+
+  return export_csv($stat_id, $atts['country'], 1);
+}
+add_shortcode('export_csv', 'export_csv_shortcode');

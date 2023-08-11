@@ -11,6 +11,7 @@ function mb_ucfirst($string, $encoding) {
 function getdb() {
 
     $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    $mysqli->set_charset("utf8");
 
     if ($mysqli->connect_errno) {
         printf("Не удалось подключиться: %s\n", $mysqli->connect_error);
@@ -226,18 +227,18 @@ LIMIT 1000";
         }
     } // end while
 ?>
-    <link rel="stylesheet" href="/wp-content/themes/oleoscope/assets/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/amcharts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/serial.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/themes/light.js" integrity="sha256-/8ddAVEjLXcC1w4acoVN5Xpp308AmeYauva/ws3o8SE=" crossorigin="anonymous"></script>
 
     <div class="chart">
-        <header>
+        <header class="chart__filter">
             <form id="chart-filter" action="" method="get">
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="form-select1" class="form-label">Продукт</label>
-                        <select id="form-select1" name="product" class="form-control" aria-label="Название продукта">
+                        <label for="form-select1" class="chart-label">Продукт</label>
+                        <select id="form-select1" name="product" class="chart-control" aria-label="Название продукта">
                             <?
                             while ($row = $result_filter1->fetch_row()) {
                                 if (!empty($row[0])) {
@@ -249,8 +250,8 @@ LIMIT 1000";
                     </div>
                     <? if (isset($country) && $country == 'Russia') : ?>
                         <div class="col-md-4">
-                            <label for="form-select2" class="form-label">Федеральный округ</label>
-                            <select id="form-select2" name="district" class="form-control" aria-label="Федеральный округ">
+                            <label for="form-select2" class="chart-label">Федеральный округ</label>
+                            <select id="form-select2" name="district" class="chart-control" aria-label="Федеральный округ">
                                 <?
 
                                 $param_in_array = false;
@@ -275,8 +276,8 @@ LIMIT 1000";
                         </div>
                     <? else : ?>
                         <div class="col-md-4">
-                            <label for="form-select2" class="form-label">Страна (базис)</label>
-                            <select id="form-select2" name="country" class="form-control" aria-label="Страна (базис)">
+                            <label for="form-select2" class="chart-label">Страна (базис)</label>
+                            <select id="form-select2" name="country" class="chart-control" aria-label="Страна (базис)">
                                 <?
 
                                 $param_in_array = false;
@@ -299,8 +300,8 @@ LIMIT 1000";
                         </div>
                     <? endif; ?>
                     <div class="col-md-4">
-                        <label for="form-select3" class="form-label">Период</label>
-                        <select id="form-select3" name="period" class="form-control" aria-label="Период">
+                        <label for="form-select3" class="chart-label">Период</label>
+                        <select id="form-select3" name="period" class="chart-control" aria-label="Период">
                             <?
                             while ($row = $result_filter3->fetch_row()) {
                                 if (!empty($row[0])) {
@@ -324,7 +325,7 @@ LIMIT 1000";
                 });
             </script>
         </header>
-        <p class="text-right text-muted mb-0">Средние цены, <?= $units ?></p>
+        <div class="chart-comment">Средние цены, <?= $units ?></div>
 
         <div id="chart" style="height: 400px"></div>
     </div>
@@ -512,8 +513,8 @@ function get_all_records_front($country) {
 
 
         $result_output .= '<div class="prices-list">
-<p class="text-muted"><strong>' . $max_date . '</strong></p>
-<ul class="list-unstyled">';
+<div class="prices-list__desc">' . $max_date . '</div>
+<ul class="prices-list__items">';
 
         // Get Table headings
         /*
@@ -548,11 +549,9 @@ function get_all_records_front($country) {
                 // $table . '_diff';
 
 
-                $result_output .= '<li><a class="" href="' . home_url('/prices/chart/') . '?id=' . $row['id'] . '">
-                     <dl class="row">
-                       <dt class="col">' . $row['name'] . ' - ' . $row['country'] . ' (' . $row['basis'] . ')</dt>
-                       <dd class="col-md-4"> Обзор цен от ' . date('d.m.Y', strtotime($row['date'])) . '</dd>
-	                   </dl>
+                $result_output .= '<li class="prices-list__row"><a class="prices-list__item" href="' . home_url('/prices/chart/') . '?id=' . $row['id'] . '">
+                       <span class="prices-list__item-name">' . $row['name'] . ' - ' . $row['country'] . ' (' . $row['basis'] . ')</span>
+                       <span class="prices-list__item-date"> Обзор цен от ' . date('d.m.Y', strtotime($row['date'])) . '</span>
 	                   </a></li>';
             } else { // Russia
                 //				if ( !empty($row['name']) ) {
@@ -752,18 +751,15 @@ function export_csv($id, $country, $chart) {
                 }
             } // end while
     ?>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/amcharts.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/serial.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/themes/light.js" integrity="sha256-/8ddAVEjLXcC1w4acoVN5Xpp308AmeYauva/ws3o8SE=" crossorigin="anonymous"></script>
 
             <article class="chart">
                 <!-- Обзор зарубежных цен со статистикой (prices-chart) -->
-                <header>
-                    <h2><?php echo $chart_name ?></h2>
-                    <strong></strong>
-                </header>
+                <h2><?php echo $chart_name ?></h2>
                 <? if (current_user_can('administrator')) : ?>
-                    <div class="chart-content">
                         <? //echo 'Цена: ' . $chart_stats[0]['price'] . '<br>';
                         //echo ' Поставка: ' . $chart_stats[0]['mydate'] . ' - ' . $date_m[date('n', strtotime($chart_stats[0]['mydate'])) - 1]; ?>
                 <? endif; ?>
@@ -817,7 +813,7 @@ function export_csv($id, $country, $chart) {
                     <h3 class="d-none">График <span class="d-none d-md-table-cell">изменения котировок</span></h3>
 
                     <div id="chart" style="height: 400px"></div>
-                    <p class="text-right">Прогноз формируется исходя из фьючерсов за последний месяц</p>
+                    <div class="chart-comment">Прогноз формируется исходя из фьючерсов за последний месяц</div>
             </article>
 
             <script>
@@ -1189,7 +1185,6 @@ LIMIT 1000";
     $chart_data  = array();
     $chart_stats = array();
 
-
     if ($Russia) {
         for ($i = 0; $i < count($result_fts); $i++) {
             // 0 -- Вес; 1 -- Цена;
@@ -1430,7 +1425,7 @@ LIMIT 1000";
         $chart_data[$i][] = sprintf("{ 'country' : '%s', 'value' : %s, 'color': '#dddddd' }", "Прочие", $chart_value_others);
     }
     ?>
-    <link rel="stylesheet" href="/wp-content/themes/oleoscope/assets/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/amcharts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/serial.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/themes/light.js" integrity="sha256-/8ddAVEjLXcC1w4acoVN5Xpp308AmeYauva/ws3o8SE=" crossorigin="anonymous"></script>
@@ -1443,8 +1438,8 @@ LIMIT 1000";
 
                     <? if ($Russia) : ?>
                         <div class="col-md-3">
-                            <label for="form-select1" class="form-label">Направление</label>
-                            <select id="form-select1" name="operation" class="form-control" aria-label="Направление">
+                            <label for="form-select1" class="chart-label">Направление</label>
+                            <select id="form-select1" name="operation" class="chart-control" aria-label="Направление">
                                 <?
                                 while ($row = $result_filter1->fetch_row()) {
                                     if (!empty($row[0])) {
@@ -1455,8 +1450,8 @@ LIMIT 1000";
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="form-select2" class="form-label">Вид продукции</label>
-                            <select id="form-select2" name="type" class="form-control" aria-label="Вид продукции">
+                            <label for="form-select2" class="chart-label">Вид продукции</label>
+                            <select id="form-select2" name="type" class="chart-control" aria-label="Вид продукции">
                                 <?
                                 while ($row = $result_filter2->fetch_row()) {
                                     if (!empty($row[0])) {
@@ -1467,8 +1462,8 @@ LIMIT 1000";
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="form-select3" class="form-label">Продукт</label>
-                            <select id="form-select3" name="product" class="form-control" aria-label="Продукт">
+                            <label for="form-select3" class="chart-label">Продукт</label>
+                            <select id="form-select3" name="product" class="chart-control" aria-label="Продукт">
                                 <?
                                 while ($row = $result_filter3->fetch_row()) {
                                     if (!empty($row[0])) {
@@ -1479,8 +1474,8 @@ LIMIT 1000";
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label for="form-select4" class="form-label">Год</label>
-                            <select id="form-select4" name="period" class="form-control" aria-label="Год">
+                            <label for="form-select4" class="chart-label">Год</label>
+                            <select id="form-select4" name="period" class="chart-control" aria-label="Год">
                                 <?
                                 while ($row = $result_filter4->fetch_row()) {
                                     if (!empty($row[0])) {
@@ -1493,8 +1488,8 @@ LIMIT 1000";
 
                     <? else : ?>
                         <div class="col-md-4">
-                            <label for="form-select1" class="form-label">Страна</label>
-                            <select id="form-select1" name="country" class="form-control" aria-label="Страна">
+                            <label for="form-select1" class="chart-label">Страна</label>
+                            <select id="form-select1" name="country" class="chart-control" aria-label="Страна">
                                 <?
                                 while ($row = $result_filter1->fetch_row()) {
                                     if (!empty($row[0])) {
@@ -1505,8 +1500,8 @@ LIMIT 1000";
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="form-select2" class="form-label">Вид продукции</label>
-                            <select id="form-select2" name="type" class="form-control" aria-label="Вид продукции">
+                            <label for="form-select2" class="chart-label">Вид продукции</label>
+                            <select id="form-select2" name="type" class="chart-control" aria-label="Вид продукции">
                                 <?
                                 while ($row = $result_filter2->fetch_row()) {
                                     if (!empty($row[0])) {
@@ -1517,8 +1512,8 @@ LIMIT 1000";
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="form-select3" class="form-label">Продукт</label>
-                            <select id="form-select3" name="product" class="form-control" aria-label="Продукт">
+                            <label for="form-select3" class="chart-label">Продукт</label>
+                            <select id="form-select3" name="product" class="chart-control" aria-label="Продукт">
                                 <?
                                 while ($row = $result_filter3->fetch_row()) {
                                     if (!empty($row[0])) {
@@ -1629,22 +1624,22 @@ echo join(',' . PHP_EOL, $chart_fts_data[$i]);
                             endfor;
                             ?>
                             <div class="col-md-12">
-                                <h4 class="text-md-center">Рейтинги за <?= $filter_period ?></h4>
+                                <div class="chart-product-name">Рейтинги за <?= $filter_period ?></div>
                             </div>
                         <? else : ?>
                             <div class="col-md-12">
-                                <div class="table-responsive mt-4 mb-4">
+                                <div class="table-responsive chart-table">
                                     <table class="table table-sm">
                                         <?= $table_rows ?>
                                     </table>
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <h4><?= $filter_product_name ?>. Рейтинги</h4>
+                                <div class="chart-product-name"><?= $filter_product_name ?>. Рейтинги</div>
                             </div>
                             <div class="col-md-4">
-                                <label for="form-select1" class="form-label">Сезон</label>
-                                <select id="form-select1" name="season" class="form-control" aria-label="Сезон">
+                                <label for="form-select1" class="chart-label">Сезон</label>
+                                <select id="form-select1" name="season" class="chart-control" aria-label="Сезон">
                                     <?
                                     foreach ($season_fields as $key => $val) {
                                         printf("<option value=\"%s\" %s>%s</option>", ($key + 1), ($filter_season == ($key + 1) ? 'selected' : ''), $val);
@@ -1707,7 +1702,7 @@ echo join(',' . PHP_EOL, $chart_fts_data[$i]);
             <div class="row">
                 <? for ($i = 0; $i < count($filter_product_param_titles); $i++) : ?>
                     <div class="<?= ($Russia) ? 'col-md-12' : 'col-md-6' ?>">
-                        <h6 class="text-md-right"><?= $filter_product_param_titles[$i] ?></h6>
+                        <div class="chart-product-param-title"><?= $filter_product_param_titles[$i] ?></div>
                         <div id="chart<?= $i ?>" style="height: 300px"></div>
                     </div>
                 <? endfor; ?>

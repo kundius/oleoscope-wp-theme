@@ -49,16 +49,7 @@
               <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php
-              if (function_exists('dynamic_sidebar')) {
-                dynamic_sidebar('sidebar-articles');
-              }
-              ?>
-              <?php // get_template_part('partials/widget-directions') ?>
-              <?php // get_template_part('partials/widget-menu-prices') ?>
-              <?php // get_template_part('partials/widget-hot') ?>
-              <?php // get_template_part('partials/widget-video') ?>
-              <?php // get_template_part('partials/widget-subscribe') ?>
+              <?php echo get_sidebar(); ?>
             </div>
           </div>
         </main>

@@ -17,7 +17,6 @@
             <div class="header-main__subscribe">
                 <a href="/about/subscription" class="header-subscribe">
                     <span class="header-subscribe__icon" aria-hidden="true">
-                        <i class="fa-solid fa-tint fa-lg"></i>
                     </span>
                     <span class="header-subscribe__content">
                         <span class="header-subscribe__title">
@@ -44,7 +43,6 @@
             <div class="header-social">
                 <button class="header-social__button">
                     Мы в соц. сетях
-                    <i class="fas fa-share-alt"></i>
                 </button>
                 <div class="header-social__links">
                     <?php wp_nav_menu([

@@ -18,7 +18,7 @@ new Swiper(".nav-slider .swiper", {
   },
 });
 
-new Swiper(".masthead-news .swiper", {
+new Swiper(".masthead-primary .swiper", {
   modules: [Pagination],
   speed: 500,
   spaceBetween: 12,
