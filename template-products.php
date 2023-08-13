@@ -1,7 +1,12 @@
+<?php
+/*
+Template Name: Продукты
+*/
+?>
 <!DOCTYPE html>
-<html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
+<html class="no-js" <?php language_attributes() ?> itemscope itemtype="http://schema.org/WebSite">
   <head>
-    <?php get_template_part('partials/head');?>
+    <?php get_template_part('partials/head') ?>
   </head>
   <body <?php body_class() ?>>
     <?php wp_body_open() ?>
@@ -23,7 +28,7 @@
               <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php dynamic_sidebar('default') ?>
+              <?php dynamic_sidebar('products') ?>
             </div>
           </div>
         </main>

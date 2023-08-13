@@ -31,11 +31,7 @@
               <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php
-              if (function_exists('dynamic_sidebar')) {
-                dynamic_sidebar('sidebar-articles');
-              }
-              ?>
+              <?php dynamic_sidebar('articles') ?>
               <?php // get_template_part('partials/widget-feed') ?>
               <?php // get_template_part('partials/widget-directions') ?>
               <?php // get_template_part('partials/widget-menu-prices') ?>

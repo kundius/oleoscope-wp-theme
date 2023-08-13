@@ -85,7 +85,11 @@ add_shortcode('products', 'products_shortcode');
 function plot_chart_db_shortcode($atts, $content = null) {
   $defaults = array('country' => 'World');
   $atts = shortcode_atts($defaults, $atts);
-  return plot_chart_db($atts['country']);
+  ob_start();
+  plot_chart_db($atts['country']);
+  $var = ob_get_contents();
+  ob_end_clean();
+  return $var;
 }
 add_shortcode('plot_chart_db', 'plot_chart_db_shortcode');
 
@@ -93,7 +97,11 @@ add_shortcode('plot_chart_db', 'plot_chart_db_shortcode');
 function plot_chart_multi_shortcode($atts, $content = null) {
   $defaults = array('country' => 'World');
   $atts = shortcode_atts($defaults, $atts);
-  return plot_chart_multi($atts['country']);
+  ob_start();
+  plot_chart_multi($atts['country']);
+  $var = ob_get_contents();
+  ob_end_clean();
+  return $var;
 }
 add_shortcode('plot_chart_multi', 'plot_chart_multi_shortcode');
 
@@ -101,9 +109,11 @@ add_shortcode('plot_chart_multi', 'plot_chart_multi_shortcode');
 function export_csv_shortcode($atts, $content = null) {
   $defaults = array('country' => 'World');
   $atts = shortcode_atts($defaults, $atts);
-
   $stat_id = (int) $_GET['id'];
-
-  return export_csv($stat_id, $atts['country'], 1);
+  ob_start();
+  export_csv($stat_id, $atts['country'], 1);
+  $var = ob_get_contents();
+  ob_end_clean();
+  return $var;
 }
 add_shortcode('export_csv', 'export_csv_shortcode');

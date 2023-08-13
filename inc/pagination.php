@@ -8,6 +8,10 @@ function simple_pagination($args = []) {
   ]);
   $links = paginate_links($args);
 
+  if (empty($links)) {
+    $links = [];
+  }
+
   $output = '<div class="siple-pagination">';
 
   if (str_contains($links[count($links) - 1], 'class="next page-numbers"')) {
@@ -21,7 +25,7 @@ function simple_pagination($args = []) {
   } else {
     $output .= '<span class="prev page-numbers">' . (!empty($args['prev_text']) ? $args['prev_text'] : __( '&laquo; Previous' )) . '</span>';
   }
-  
+
   $output .= '</div>';
 
   echo $output;

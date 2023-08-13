@@ -8,7 +8,7 @@
     <label class="widget-subscribe__approve">
       <input type="checkbox" name="approve">
       <span></span>
-      Согласие на <a href="#">обработку данных</a>
+      Согласие на <a href="/terms/">обработку данных</a>
     </label>
   </form>
 </div>

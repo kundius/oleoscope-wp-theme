@@ -13,17 +13,13 @@
         <main class="main">
           <div class="archive-layout">
             <div class="archive-layout__content">
-              <?php if (have_posts()): ?>
-              <h1><?php the_title() ?></h1>
+              <h1>404 Страница не найдена.</h1>
               <div class="content">
-                <?php the_content() ?>
+                <p>Ничего не найдено по этому пути. Попробуйте воспользоваться ссылками ниже или поиском.</p>
               </div>
-              <?php else : ?>
-              Результатов не найдено
-              <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php dynamic_sidebar('default') ?>
+              <?php dynamic_sidebar('about') ?>
             </div>
           </div>
         </main>

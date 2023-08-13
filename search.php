@@ -14,23 +14,17 @@
           <div class="archive-layout">
             <div class="archive-layout__content">
               <?php if (have_posts()): ?>
-              <h1><?php the_archive_title() ?></h1>
+              <h1>Результаты по запросу:</h1>
               <div class="archive-pagination">
-                <?php simple_pagination(); ?>
+                <?php simple_pagination() ?>
               </div>
               <div class="archive-list">
-                <?php while (have_posts()) : the_post(); ?>
+                <?php while (have_posts()): the_post(); ?>
                 <div class="archive-list__item">
                   <article class="card-small">
                     <?php if (has_post_thumbnail()): ?>
                     <figure class="card-small__media">
-                      <?php echo fly_get_attachment_image(get_post_thumbnail_id(), [300, 320], true); ?>
-                      <ul class="card-small__tags">
-                        <?php $categories = get_the_category(); ?>
-                        <?php if (!empty($categories)): ?>
-                          <li class="card-small__tag"><?php echo esc_html($categories[0]->name) ?></li>
-                        <?php endif; ?>
-                      </ul>
+                      <?php echo fly_get_attachment_image(get_post_thumbnail_id(), [300, 200], true) ?>
                     </figure>
                     <?php endif; ?>
                     <a href="<?php the_permalink() ?>" class="card-small__title">
@@ -42,14 +36,14 @@
                 <?php endwhile; ?>
               </div>
               <div class="archive-pagination">
-                <?php simple_pagination(); ?>
+                <?php simple_pagination() ?>
               </div>
-              <?php else : ?>
+              <?php else: ?>
               Результатов не найдено
               <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php dynamic_sidebar('articles') ?>
+              <?php dynamic_sidebar('default') ?>
             </div>
           </div>
         </main>

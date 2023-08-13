@@ -154,8 +154,7 @@ $categories = get_categories();
 
           <div class="home-layout">
             <div class="home-layout__left sidebar">
-              <?php get_template_part('partials/widget-feed') ?>
-              <?php get_template_part('partials/widget-subscribe') ?>
+              <?php dynamic_sidebar('home-left') ?>
             </div>
 
             <div class="home-layout__center">
@@ -186,10 +185,7 @@ $categories = get_categories();
             </div>
 
             <div class="home-layout__right sidebar">
-              <?php get_template_part('partials/widget-menu-prices') ?>
-              <?php get_template_part('partials/widget-hot') ?>
-              <?php get_template_part('partials/widget-knowledge') ?>
-              <?php get_template_part('partials/widget-video') ?>
+              <?php dynamic_sidebar('home-right') ?>
             </div>
           </div>
         </main>
