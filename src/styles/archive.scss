@@ -86,7 +86,7 @@
 .archive-list__item {
   display: flex;
   flex-basis: calc(calc(100% / 3) + 2px);
-  // flex-grow: 1;
+  flex-grow: 1;
   margin: -1px;
   min-width: 260px;
 }
