@@ -30,3 +30,20 @@ new Swiper(".masthead-primary .swiper", {
     el: ".swiper-pagination",
   },
 });
+
+const drawer = document.querySelector('.drawer')
+const drawerToggle = document.querySelector('.header-main__menu')
+if (drawerToggle && drawer) {
+  let opened = false
+  drawerToggle.addEventListener('click', () => {
+    if (opened) {
+      opened = false
+      drawerToggle.classList.remove('active')
+      drawer.classList.remove('active')
+    } else {
+      opened = true
+      drawerToggle.classList.add('active')
+      drawer.classList.add('active')
+    }
+  })
+}

@@ -57,3 +57,13 @@
         </div>
     </div>
 </div>
+
+<div class="drawer">
+    <?php wp_nav_menu([
+        'theme_location' => 'menu-1',
+        'container' => false,
+        'menu_id' => 'drawer-menu',
+        'menu_class' => 'drawer-menu',
+        'depth' => 1,
+    ]); ?>
+</div>
