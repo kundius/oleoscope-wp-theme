@@ -12,7 +12,7 @@
                     <button class="searchform__submit"></button>
                 </form>
             </div>
-            <a href="#" class="header-main__search-link"></a>
+            <a href="/?s=" class="header-main__search-link"></a>
             <div class="header-main__divider-2"></div>
             <div class="header-main__subscribe">
                 <a href="/about/subscription" class="header-subscribe">
