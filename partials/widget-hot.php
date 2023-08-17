@@ -1,6 +1,6 @@
 <?php
 $partners_query = new WP_Query([
-  'post_type' => 'partners',
+  'post_type' => 'news',
   'posts_per_page' => 5,
   'order' => 'DESC',
   'meta_key' => 'views',
