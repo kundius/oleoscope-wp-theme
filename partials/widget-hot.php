@@ -10,7 +10,7 @@ $partners = $partners_query->get_posts();
 ?>
 <div class="hot-list">
   <?php foreach ($partners as $item): ?>
-    <?php $meta = get_post_meta($item); ?>
+    <?php $meta = get_post_meta($item->ID); ?>
 <pre><?php print_r($meta) ?></pre>
   <div class="hot-list__item">
     <article class="card-flat">
