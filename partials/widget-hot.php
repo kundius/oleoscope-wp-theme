@@ -17,7 +17,7 @@ $partners = $partners_query->get_posts();
       </a>
       <div class="card-flat__foot">
         <div class="card-flat__date"><?php echo get_the_date('d.m.Y', $item) ?></div>
-        <div class="card-flat__views"><?php echo get_post_meta(get_the_ID(), 'views', true) ?></div>
+        <div class="card-flat__views"><?php echo get_post_meta($item->ID, 'views', true) ?></div>
       </div>
     </article>
   </div>
