@@ -3,8 +3,7 @@ $video_query = new WP_Query([
   'post_type' => 'news',
   'posts_per_page' => 3,
   'order' => 'DESC',
-  // 'meta_key' => 'views',
-  // 'orderby' => 'meta_value'
+  's' => 'youtu.be'
 ]);
 $video = $video_query->get_posts();
 ?>
