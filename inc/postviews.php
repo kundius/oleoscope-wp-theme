@@ -53,7 +53,7 @@ function postviews($args = []) {
 	}
 
   print_r('test777');
-  print_r($do_count);
+  print_r($user_ID);
 
 	if ($do_count) {
 		$up = $wpdb->query($wpdb->prepare(
