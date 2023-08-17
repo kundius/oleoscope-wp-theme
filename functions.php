@@ -4,6 +4,7 @@ require 'inc/post-types.php';
 require 'inc/pagination.php';
 require 'inc/shortcodes.php';
 require 'inc/sidebars.php';
+require 'inc/postviews.php';
 
 function load_template_part($template_name, $part_name = null) {
     ob_start();

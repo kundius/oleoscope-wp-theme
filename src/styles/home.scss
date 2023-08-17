@@ -25,17 +25,21 @@
     order: 2;
     min-width: 280px;
     border-top: 2px solid #fafafa;
+    padding-left: 12px;
+    padding-right: 12px;
   }
   @include tablet {
     flex-basis: calc(50% - 12px);
     order: 2;
     border-top: 2px solid #fafafa;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 }
 
 .home-layout__center {
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
   padding-top: 28px;
   padding-bottom: 28px;
   flex-basis: calc(50% - 12px);
@@ -44,6 +48,8 @@
   @include mobile {
     flex-basis: 100%;
     order: 1;
+    padding-left: 12px;
+    padding-right: 12px;
   }
   @include tablet {
     flex-basis: 100%;
@@ -64,11 +70,15 @@
     order: 3;
     min-width: 280px;
     border-top: 2px solid #fafafa;
+    padding-left: 12px;
+    padding-right: 12px;
   }
   @include tablet {
     flex-basis: calc(50% - 12px);
     order: 3;
     border-top: 2px solid #fafafa;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 }
 
@@ -377,7 +387,7 @@
 }
 
 .analytics-list {
-  padding: 12px 60px;
+  padding: 12px 0;
 
   @include mobile {
     padding: 0;
