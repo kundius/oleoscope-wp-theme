@@ -52,9 +52,6 @@ function postviews($args = []) {
 		}
 	}
 
-  print_r('test777');
-  print_r($user_ID);
-
 	if ($do_count) {
 		$up = $wpdb->query($wpdb->prepare(
 			"UPDATE $wpdb->postmeta SET meta_value = (meta_value+1) WHERE post_id = %d AND meta_key = %s",
