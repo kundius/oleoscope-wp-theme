@@ -18,7 +18,7 @@ function postviews($args = []) {
 		// Ключ мета поля поста, куда будет записываться количество просмотров.
 		'meta_key' => 'views',
 		// Чьи посещения считать? 0 - Всех. 1 - Только гостей. 2 - Только зарегистрированных пользователей.
-		'who_count' => 1,
+		'who_count' => 0,
 		// Исключить ботов, роботов? 0 - нет, пусть тоже считаются. 1 - да, исключить из подсчета.
 		'exclude_bots' => true,
 	]);
@@ -51,6 +51,9 @@ function postviews($args = []) {
 			$do_count = false;
 		}
 	}
+
+  print_r('test777');
+  print_r($do_count);
 
 	if ($do_count) {
 		$up = $wpdb->query($wpdb->prepare(
