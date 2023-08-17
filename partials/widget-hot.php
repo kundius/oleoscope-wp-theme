@@ -3,8 +3,8 @@ $partners_query = new WP_Query([
   'post_type' => 'partners',
   'posts_per_page' => 5,
   'order' => 'DESC',
-  'meta_key' => 'views',
-  'orderby' => 'meta_value'
+  // 'meta_key' => 'views',
+  // 'orderby' => 'meta_value'
 ]);
 $partners = $partners_query->get_posts();
 ?>
@@ -21,5 +21,5 @@ $partners = $partners_query->get_posts();
       </div>
     </article>
   </div>
-  <?php endforeach; ?>
+  <?php endforeach ?>
 </div>

@@ -1,18 +1,24 @@
+<?php
+$video_query = new WP_Query([
+  'post_type' => 'news',
+  'posts_per_page' => 3,
+  'order' => 'DESC',
+  // 'meta_key' => 'views',
+  // 'orderby' => 'meta_value'
+]);
+$video = $video_query->get_posts();
+?>
 <div class="video-list">
+  <?php foreach ($video as $item): ?>
   <div class="video-list__item">
     <div class="card-video">
+      <?php if (has_post_thumbnail($item)): ?>
       <figure class="card-video__media">
-        <img src="<?php bloginfo('template_url') ?>/dist/images/Layer_4.png" alt="" class="card-video__image" />
+        <?php echo fly_get_attachment_image(get_post_thumbnail_id($item), [300, 200], true) ?>
       </figure>
-      <a class="card-video__title" href="#">Ход посевной кампании, производство масла в РФ, подорожание оливкового масла</a>
+      <?php endif ?>
+      <a class="card-video__title" href="<?php the_permalink($item) ?>"><?php echo get_the_title($item) ?></a>
     </div>
   </div>
-  <div class="video-list__item">
-    <div class="card-video">
-      <figure class="card-video__media">
-        <img src="<?php bloginfo('template_url') ?>/dist/images/Layer_4.png" alt="" class="card-video__image" />
-      </figure>
-      <a class="card-video__title" href="#">Ход посевной кампании, производство масла в РФ, подорожание оливкового масла</a>
-    </div>
-  </div>
+  <?php endforeach ?>
 </div>
