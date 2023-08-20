@@ -20,14 +20,10 @@ $last_events = $last_events_query->get_posts();
 
 $week_news_query = new WP_Query([
   'post_type' => 'news',
-  'posts_per_page' => 10,
+  'posts_per_page' => 8,
   'order' => 'DESC',
   'orderby' => 'date',
-  'date_query' => [
-    [
-      'after' => date('Y-m-d', strtotime('-7 days')),
-    ]
-  ],
+  'category__in' => [1041]
 ]);
 $week_news = $week_news_query->get_posts();
 

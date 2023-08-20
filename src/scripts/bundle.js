@@ -13,8 +13,8 @@ new Swiper(".nav-slider .swiper", {
   // grabCursor: true,
   slidesPerView: "auto",
   navigation: {
-    nextEl: ".nav-slider-button-prev",
-    prevEl: ".nav-slider-button-next",
+    nextEl: ".nav-slider-button-next",
+    prevEl: ".nav-slider-button-prev",
   },
 });
 
