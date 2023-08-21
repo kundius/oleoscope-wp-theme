@@ -27,8 +27,33 @@ add_shortcode('menu', 'print_menu_shortcode');
 
 
 function feed_shortcode($atts, $content = null) {
-  extract(shortcode_atts([], $atts));
-  return load_template_part('partials/widget-feed');
+  $defaults = array('count' => 20);
+  $atts = shortcode_atts($defaults, $atts);
+  
+  $news_query = new WP_Query([
+    'post_type' => 'news',
+    'posts_per_page' => $atts['count'],
+    'order' => 'DESC',
+    'orderby' => 'date'
+  ]);
+  $news = $news_query->get_posts();
+
+  $output = '<div class="news-feed">';
+  foreach ($news as $item) {
+    $output .= '<div class="news-feed__row">';
+    $output .= '<article class="news-feed__item">';
+    $output .= '<a href="' . get_the_permalink($item) . '" class="news-feed__title">';
+    $output .= get_the_title($item);
+    $output .= '</a>';
+    $output .= '<div class="news-feed__date">';
+    $output .= get_the_date('d.m.Y', $item);
+    $output .= '</div>';
+    $output .= '</article>';
+    $output .= '</div>';
+  }
+  $output .= '</div>';
+  
+  return $output;
 }
 add_shortcode('feed', 'feed_shortcode');
 
