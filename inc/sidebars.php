@@ -1,9 +1,6 @@
 <?php
 add_action('widgets_init', 'register_my_widgets');
 
-// Новости и Аналитика список
-// Новости и Аналитика подробно
-
 function register_my_widgets() {
   register_sidebar(array(
     'name' => "Сайдбар на главной странице слева",
@@ -147,9 +144,9 @@ function get_default_sidebar() {
 
   if ($wp_query->post->ID === 20 || $wp_query->post->post_parent === 20) {
     dynamic_sidebar('about');
-  } elseif ($wp_query->post->ID === 25674 || $wp_query->post->post_parent === 25674) {
+  } elseif ($wp_query->post->ID === 25674) {
     dynamic_sidebar('knowledge-list');
-  } elseif ($wp_query->post->post_parent === 25680 || $wp_query->post->post_parent === 25683) {
+  } elseif ($wp_query->post->post_parent === 25680 || $wp_query->post->post_parent === 25683 || $wp_query->post->post_parent === 25674) {
     dynamic_sidebar('knowledge-detail');
   } elseif ($wp_query->post->ID === 14) {
     dynamic_sidebar('prices-list');
