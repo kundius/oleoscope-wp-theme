@@ -49,7 +49,7 @@
               <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php dynamic_sidebar('articles') ?>
+              <?php dynamic_sidebar('interview-list') ?>
             </div>
           </div>
         </main>

@@ -31,13 +31,7 @@
               <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php dynamic_sidebar('articles') ?>
-              <?php // get_template_part('partials/widget-feed') ?>
-              <?php // get_template_part('partials/widget-directions') ?>
-              <?php // get_template_part('partials/widget-menu-prices') ?>
-              <?php // get_template_part('partials/widget-hot') ?>
-              <?php // get_template_part('partials/widget-video') ?>
-              <?php // get_template_part('partials/widget-subscribe') ?>
+              <?php dynamic_sidebar('news-detail') ?>
             </div>
           </div>
         </main>

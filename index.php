@@ -23,7 +23,7 @@
               <?php endif; ?>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php dynamic_sidebar('default') ?>
+              <?php get_default_sidebar() ?>
             </div>
           </div>
         </main>

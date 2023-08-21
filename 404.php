@@ -19,7 +19,7 @@
               </div>
             </div>
             <div class="archive-layout__right sidebar">
-              <?php dynamic_sidebar('about') ?>
+              <?php get_default_sidebar() ?>
             </div>
           </div>
         </main>
