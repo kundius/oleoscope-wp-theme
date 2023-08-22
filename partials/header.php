@@ -8,7 +8,7 @@
             <div class="header-main__divider-1"></div>
             <div class="header-main__search">
                 <form role="search" id="searchform" method="get" class="searchform" action="<?php echo home_url( '/' ); ?>">
-                    <input type="text" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
+                    <input type="text" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>">
                     <button class="searchform__submit"></button>
                 </form>
             </div>
@@ -48,7 +48,7 @@
                     <?php wp_nav_menu([
                         'theme_location' => 'menu-social',
                         'container' => false,
-                        'menu_id' => 'footer-social',
+                        'menu_id' => 'header-social',
                         'menu_class' => 'footer-social',
                         'depth' => 1,
                     ]); ?>

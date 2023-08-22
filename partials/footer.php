@@ -30,7 +30,7 @@
     <div class="container">
       <div class="footer-secondary">
         <div class="footer-secondary__legal">
-          При использовании материалов OleoScope.ru гиперссылка обязательна, в бумажных источниках обязательно указание ссылки на источник.<br />
+          При использовании материалов OleoScope.ru гиперссылка обязательна, в бумажных источниках обязательно указание ссылки на источник.<br>
           Настоящий ресурс содержит материалы категории <span>18+</span>
         </div>
         <div class="footer-secondary__copyright">© OleoScope 2023</div>
