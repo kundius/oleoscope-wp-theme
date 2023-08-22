@@ -917,7 +917,11 @@ function plot_chart_multi($country) {
     if ( current_user_can( 'administrator' ) ) {
 //        echo 'USDA / МЖО  <br>' . $pre_query . "<br><br>\n";
     }
-    $pre_result = $mysqli->query($pre_query) or die('Нет результатов по запросу');
+    $pre_result = $mysqli->query($pre_query);
+    if (empty($pre_result)) {
+        echo 'Нет результатов по запросу';
+        return;
+    }
     $pre_row = $pre_result->fetch_assoc();
 
     // Устанавливаем дефолтные значения для GET-параметров
@@ -1061,13 +1065,29 @@ LIMIT 1000";
         $query_fields = "SHOW COLUMNS FROM " . $table;
     }
 
-    $result_filter1 = $mysqli->query($query_filter1) or die('Нет результатов по запросу 1');
-    $result_filter2 = $mysqli->query($query_filter2) or die('Нет результатов по запросу 2');
-    $result_filter3 = $mysqli->query($query_filter3) or die('Нет результатов по запросу 3');
+    $result_filter1 = $mysqli->query($query_filter1);
+    if (empty($result_filter1)) {
+        echo 'Нет результатов по запросу 1';
+        return;
+    }
+    $result_filter2 = $mysqli->query($query_filter2);
+    if (empty($result_filter2)) {
+        echo 'Нет результатов по запросу 2';
+        return;
+    }
+    $result_filter3 = $mysqli->query($query_filter3);
+    if (empty($result_filter3)) {
+        echo 'Нет результатов по запросу 3';
+        return;
+    }
 
     if ($Russia) {
         // Russia — допольнительный фильтр
-        $result_filter4 = $mysqli->query($query_filter4) or die('Нет результатов по запросу 4');
+        $result_filter4 = $mysqli->query($query_filter4);
+        if (empty($result_filter4)) {
+            echo 'Нет результатов по запросу 4';
+            return;
+        }
 
         $query_fts = array();
         foreach (array('weight', 'price') as $key => $value) {
@@ -1080,7 +1100,11 @@ LIMIT 1000";
         }
     } else {
         // World — названия столбцов
-        $result_fields = $mysqli->query($query_fields) or die('Нет результатов' . $query_fields);
+        $result_fields = $mysqli->query($query_fields);
+        if (empty($result_fields)) {
+            echo 'Нет результатов по запросу 5';
+            return;
+        }
         $query = "SELECT " . $fields .
             " FROM " . $table .
             " WHERE " . $where .
@@ -1134,25 +1158,43 @@ LIMIT 1000";
     if ($Russia) {
         $result_fts = array(); // первая ячейка массива — вес, вторая — цена; выборка: 1 текущий год
         foreach (array('weight', 'price') as $key => $value) {
-            $result_fts[] = $mysqli->query($query_fts[$key]) or die('Нет результатов по запросу' . $query_fts[$key]);
+            $result_fts_fields = $mysqli->query($query_fts[$key]);
+            if (empty($result_fts_fields)) {
+                echo 'Нет результатов по запросу 6';
+                return;
+            }
+            $result_fts[] = $result_fts_fields;
             if ( current_user_can( 'administrator' ) ) {
 //                echo $query_fts[ $key ] . "<br>\n";
             }
         }
     } else {
-        $result = $mysqli->query($query) or die('Нет результатов по запросу' . $query);
+        $result = $mysqli->query($query);
+        if (empty($result)) {
+            echo 'Нет результатов по запросу 7';
+            return;
+        }
     }
 
     if ($Russia) {
         $result_top5_chart = array();
-        $result_top5_sum = $mysqli->query( $query_sum ) or die( 'Нет результатов по запросу' . $result_top5_sum );
+        $result_top5_sum = $mysqli->query( $query_sum );
+        if (empty($result_top5_sum)) {
+            echo 'Нет результатов по запросу 8';
+            return;
+        }
         if ( current_user_can( 'administrator' ) ) {
 //            echo 'query sum:' . $query_sum;
         }
     }
 
     for ($i = 0; $i < count($query_top5_chart); $i++) {
-        $result_top5_chart[] = $mysqli->query($query_top5_chart[$i]) or die('Нет результатов по запросу' . $query_top5_chart[$i]);
+        $result_top5_chart_item = $mysqli->query($query_top5_chart[$i]);
+        if (empty($result_top5_chart_item)) {
+            echo 'Нет результатов по запросу 9';
+            return;
+        }
+        $result_top5_chart[] = $result_top5_chart_item;
         if ( current_user_can( 'administrator' ) ) {
 //            echo $query_top5_chart[ $i ] . "<br>№№№№№№№\n";
         }
