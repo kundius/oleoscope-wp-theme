@@ -1,3 +1,6 @@
+<?php
+$page = get_query_var('paged');
+?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
   <head>
@@ -14,6 +17,7 @@
           <div class="archive-layout">
             <div class="archive-layout__content">
               <?php if (have_posts()): ?>
+                <?php echo $page ?>
               <h1><?php the_archive_title() ?></h1>
               <div class="archive-pagination">
                 <?php simple_pagination(); ?>
