@@ -3,7 +3,7 @@
     <div class="container">
       <div class="footer-primary">
         <a href="/" class="footer-primary__logo">
-          <img src="<?php bloginfo('template_url') ?>/dist/images/logo.svg" alt="">
+          <img src="<?php bloginfo('template_url') ?>/dist/images/logo.svg" alt="<?php bloginfo('name') ?>" width="300" height="100" >
         </a>
         <div class="footer-primary__nav">
           <?php wp_nav_menu([

@@ -18,7 +18,7 @@
               
               <div class="archive-layout__search">
                 <form role="search" id="searchform" method="get" class="searchform" action="<?php echo home_url( '/' ); ?>">
-                    <input type="search" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
+                    <input type="text" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
                     <button class="searchform__submit"></button>
                 </form>
               </div>

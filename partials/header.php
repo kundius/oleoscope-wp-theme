@@ -3,12 +3,12 @@
         <div class="container header-main__container">
             <button class="header-main__menu"></button>
             <a href="/" class="header-main__logo">
-                <img src="<?php bloginfo('template_url') ?>/dist/images/logo.svg" alt="">
+                <img src="<?php bloginfo('template_url') ?>/dist/images/logo.svg" alt="<?php bloginfo('name') ?>" width="300" height="100" >
             </a>
             <div class="header-main__divider-1"></div>
             <div class="header-main__search">
                 <form role="search" id="searchform" method="get" class="searchform" action="<?php echo home_url( '/' ); ?>">
-                    <input type="search" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
+                    <input type="text" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
                     <button class="searchform__submit"></button>
                 </form>
             </div>
