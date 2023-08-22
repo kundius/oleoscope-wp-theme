@@ -74,6 +74,8 @@
 
 add_filter('aioseo_title', 'ats_custom_aioseo_title');
 function ats_custom_aioseo_title($text) {
+  global $wp_query;
+  print_r($wp_query);
   $page = get_query_var('paged');
 
   if ($page > 1) {
