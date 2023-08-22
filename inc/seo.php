@@ -82,3 +82,15 @@ function ats_custom_aioseo_title($text) {
 
   return $text;
 }
+
+add_filter('aioseo_description', 'ats_custom_aioseo_description');
+function ats_custom_aioseo_description($text) {
+  global $wp_query;
+
+  if ($wp_query->query_vars['paged'] > 1) {
+    // $text = 'Страница ' . $wp_query->query_vars['paged'] . ' из ' . $wp_query->max_num_pages . ' - ' . $text;
+    $text = wp_title();
+  }
+
+  return $text;
+}
