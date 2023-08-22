@@ -17,8 +17,17 @@ $page = get_query_var('paged');
           <div class="archive-layout">
             <div class="archive-layout__content">
               <?php if (have_posts()): ?>
-                <?php echo $page ?>
-              <h1><?php the_archive_title() ?></h1>
+              <?php if ($page > 1): ?>
+              <div class="h1">
+              <?php else: ?>
+              <h1>
+              <?php endif ?>
+                <?php the_archive_title() ?>
+              <?php if ($page > 1): ?>
+              </div>
+              <?php else: ?>
+              </h1>
+              <?php endif ?>
               <div class="archive-pagination">
                 <?php simple_pagination(); ?>
               </div>
