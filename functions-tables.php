@@ -67,7 +67,11 @@ function plot_chart_db($country) {
     // запрос полей, по которым выводим данные по индексу, полученному по ссылке
     $pre_query = "SELECT * FROM " . $table . " LIMIT 1";
     //	echo $pre_query;
-    $pre_result = $mysqli->query($pre_query) or die('Нет результатов по запросу');
+    $pre_result = $mysqli->query($pre_query);
+    if (empty($pre_result)) {
+        echo 'Нет результатов по запросу';
+        return;
+    }
     $pre_row = $pre_result->fetch_assoc();
 
     // Устанавливаем дефолтные значения для GET-параметров
@@ -160,9 +164,21 @@ LIMIT 1000";
     }
 
 
-    $result_filter1 = $mysqli->query($query_filter1) or die('Нет результатов по запросу 1');
-    $result_filter2 = $mysqli->query($query_filter2) or die('Нет результатов по запросу 2');
-    $result_filter3 = $mysqli->query($query_filter3) or die('Нет результатов по запросу 3');
+    $result_filter1 = $mysqli->query($query_filter1);
+    if (empty($result_filter1)) {
+        echo 'Нет результатов по запросу';
+        return;
+    }
+    $result_filter2 = $mysqli->query($query_filter2);
+    if (empty($result_filter2)) {
+        echo 'Нет результатов по запросу';
+        return;
+    }
+    $result_filter3 = $mysqli->query($query_filter3);
+    if (empty($result_filter3)) {
+        echo 'Нет результатов по запросу';
+        return;
+    }
 
 
     $query_old = "SELECT *, t1.id as id FROM " . $table .
@@ -181,7 +197,11 @@ LIMIT 1000";
     //	  echo $query;
     //  }
 
-    $result = $mysqli->query($query) or die('Нет результатов по запросу');
+    $result = $mysqli->query($query);
+    if (empty($result)) {
+        echo 'Нет результатов по запросу';
+        return;
+    }
 
 
     ////////////// PLOT THE CHART //////////////
@@ -632,7 +652,11 @@ function export_csv($id, $country, $chart) {
         if ( current_user_can( 'administrator' ) ) {
 //            echo $pre_query. '<br>';
         }
-        $pre_result = $mysqli->query($pre_query) or die('Нет результатов по запросу');
+        $pre_result = $mysqli->query($pre_query);
+        if (empty($pre_result)) {
+            echo 'Нет результатов по запросу';
+            return;
+        }
         $pre_row = $pre_result->fetch_assoc();
 
         // стоимость поставок на:
@@ -640,20 +664,36 @@ function export_csv($id, $country, $chart) {
         if ( current_user_can( 'administrator' ) ) {
 //            echo $pre_query2. '<br>';
         }
-        $pre_result2 = $mysqli->query($pre_query2) or die('Нет результатов по запросу');
+        $pre_result2 = $mysqli->query($pre_query2);
+        if (empty($pre_result2)) {
+            echo 'Нет результатов по запросу';
+            return;
+        }
 
         $pre_query3 = "SELECT DATE_FORMAT(date, '%d.%m.%Y') as date, ROUND(`price`) as price_max FROM `oleo_price_world` WHERE `name` = '" . $pre_row['name'] . "' AND `country` = '" . $pre_row['country'] . "' AND `basis` = '" . $pre_row['basis'] . "' AND `delivery_date` = '" . $pre_row['delivery_date'] . "' ORDER BY `price` DESC LIMIT 1;";
         if ( current_user_can( 'administrator' ) ) {
 //            echo $pre_query3. '<br>';
         }
-        $pre_result3 = $mysqli->query($pre_query3) or die('Нет результатов по запросу');
+        $pre_result3 = $mysqli->query($pre_query3);
+        if (empty($pre_result3)) {
+            echo 'Нет результатов по запросу';
+            return;
+        }
 
         $pre_query4 = "SELECT DATE_FORMAT(date, '%d.%m.%Y') as date, ROUND(`price`) as price_min FROM `oleo_price_world` WHERE `name` = '" . $pre_row['name'] . "' AND `country` = '" . $pre_row['country'] . "' AND `basis` = '" . $pre_row['basis'] . "' AND `delivery_date` = '" . $pre_row['delivery_date'] . "' ORDER BY `price` ASC LIMIT 1;";
-        $pre_result4 = $mysqli->query($pre_query4) or die('Нет результатов по запросу');
+        $pre_result4 = $mysqli->query($pre_query4);
+        if (empty($pre_result4)) {
+            echo 'Нет результатов по запросу';
+            return;
+        }
 
         // Предыдущее значение
         $pre_query5 = "SELECT DATE_FORMAT(date, '%d.%m.%Y') as date_f, ROUND(`price`) as price_min FROM `oleo_price_world` WHERE `name` = '" . $pre_row['name'] . "' AND `country` = '" . $pre_row['country'] . "' AND `basis` = '" . $pre_row['basis'] . "' AND `delivery_date` = '" . $pre_row['delivery_date'] . "' ORDER BY `date` DESC LIMIT 1 OFFSET 1;";
-        $pre_result5 = $mysqli->query($pre_query5) or die('Нет результатов по запросу');
+        $pre_result5 = $mysqli->query($pre_query5);
+        if (empty($pre_result5)) {
+            echo 'Нет результатов по запросу';
+            return;
+        }
         if ( current_user_can( 'administrator' ) ) {
 //            echo 'pre result: ' . $pre_query5. '<br>';
         }
@@ -696,7 +736,11 @@ function export_csv($id, $country, $chart) {
 //            echo '3 - ' . $query;
         }
 
-        $result = $mysqli->query($query) or die('Нет результатов по запросу');
+        $result = $mysqli->query($query);
+        if (empty($result)) {
+            echo 'Нет результатов по запросу';
+            return;
+        }
 
 
         ////////////// PLOT THE CHART //////////////
