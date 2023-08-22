@@ -16,10 +16,12 @@
               <?php if (have_posts()): ?>
               <h1>Результаты по запросу:</h1>
               
-              <form role="search" id="searchform" method="get" class="searchform" action="<?php echo home_url( '/' ); ?>">
-                  <input type="search" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
-                  <button class="searchform__submit"></button>
-              </form>
+              <div class="archive-layout__search">
+                <form role="search" id="searchform" method="get" class="searchform" action="<?php echo home_url( '/' ); ?>">
+                    <input type="search" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>" />
+                    <button class="searchform__submit"></button>
+                </form>
+              </div>
 
               <div class="archive-pagination">
                 <?php simple_pagination() ?>
