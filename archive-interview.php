@@ -1,3 +1,6 @@
+<?php
+$page = get_query_var('paged');
+?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
   <head>

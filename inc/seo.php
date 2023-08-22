@@ -74,7 +74,11 @@
 
 add_filter('aioseo_title', 'ats_custom_aioseo_title');
 function ats_custom_aioseo_title($text) {
-  $atstext = ' - мой текст';
-  $text .= $atstext;
+  $page = get_query_var('paged');
+
+  if ($page > 1) {
+    $text = 'Страница ' . $page . ' - ' . $text;
+  }
+
   return $text;
 }
