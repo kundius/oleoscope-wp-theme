@@ -108,7 +108,7 @@ function ats_custom_aioseo_title($text) {
     $text = implode(' - ', [
       'Страница ' . $wp_query->query_vars['paged'] . ' из ' . $wp_query->max_num_pages,
       get_page_name(),
-      bloginfo('name')
+      get_bloginfo('name')
     ]);
   }
 
@@ -123,7 +123,7 @@ function ats_custom_aioseo_description($text) {
     $text = implode(' - ', [
       'Страница ' . $wp_query->query_vars['paged'] . ' из ' . $wp_query->max_num_pages,
       get_page_name(),
-      bloginfo('name')
+      get_bloginfo('name')
     ]);
   }
 
