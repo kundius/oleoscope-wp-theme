@@ -71,3 +71,10 @@
 //         echo '<meta name="description" content="' . $description . '">';
 //     }
 // });
+
+add_filter('aioseo_title', 'ats_custom_aioseo_title');
+function ats_custom_aioseo_title($text) {
+  $atstext = ' - мой текст';
+  $text .= $atstext;
+  return $text;
+}
