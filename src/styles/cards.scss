@@ -30,7 +30,7 @@
 }
 
 .card-medium__tag {
-  color: #242424;
+  color: #000;
   font-size: 12px;
   font-weight: 700;
   line-height: 1;
@@ -41,7 +41,7 @@
   display: inline-flex;
   align-items: center;
   border-radius: 4px;
-  background-color: #fcc101;
+  background-color: rgba(245, 245, 245, 0.65);
 }
 
 .card-medium__date {
@@ -120,7 +120,7 @@
 }
 
 .card-small__tag {
-  color: #242424;
+  color: #000;
   font-size: 12px;
   font-weight: 700;
   line-height: 1;
@@ -131,7 +131,7 @@
   display: inline-flex;
   align-items: center;
   border-radius: 4px;
-  background-color: #fcc101;
+  background-color: rgba(252, 196, 29, 0.7);
 }
 
 .card-small__date {

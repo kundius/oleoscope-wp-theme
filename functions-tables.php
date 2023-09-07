@@ -1278,7 +1278,6 @@ LIMIT 1000";
 //                echo $i . "<br>\n";
             }
 
-            $j         = 1;
             $sum_param = '';
 
             if ($i == 0) {
@@ -1293,37 +1292,11 @@ LIMIT 1000";
             $fts_data_tmp = array();
 
             while ($row = $result_fts[$i]->fetch_assoc()) {
+                $fts_data_tmp[$i][$row['month']][$row['year']] = $row[$sum_param];
 
                 if ( current_user_can( 'administrator' ) ) {
-//                    echo $j . ': ' . $row['month'] . ' - ' . $row['year'] . ' - ' . $row[$sum_param] . "<br>\n";
+//                    echo $i . ': ' . $row['month'] . ' - ' . $row['year'] . ' - ' . $row[$sum_param] . "<br>\n";
                 }
-                // Разделить запрос к БД на два запроса
-                // затерялся месяц в 2014 и 2022 некорректно отрабатывает
-                /*
-                if ($j == 1) {
-                    $sum_last_year = $row[$sum_param]; // записываем значение прошлого параметра
-                    $last_year = $row['year']; // записываем значение прошлого параметра
-                } elseif ($row['year'] != $last_year) {
-                    // пишем только для чётных
-                    // TODO: найти баг с выводом только чётных для 2014 года
-                    $chart_fts_format_string1 = "{ 'month' : '%s', 'year1' : %s, 'year2' : %s }";
-                    $chart_fts_data[$i][] = sprintf(
-                        $chart_fts_format_string1, // делим на два набора в одной диаграмме
-                        mb_ucfirst(mb_substr($date_m[$row['month'] - 1], 0, 3), "UTF-8"),
-                        $sum_last_year,
-                        $row[$sum_param]
-                    );
-                } elseif ($row['year'] == $last_year) {
-                    $last_year = $row['year'];
-                    $chart_fts_format_string2 = "{ 'month' : '%s', 'year1' : %s, 'year2' : %s }";
-                    $chart_fts_data[$i][] = sprintf(
-                        $chart_fts_format_string2, // делим на два набора в одной диаграмме
-                        mb_ucfirst(mb_substr($date_m[$row['month'] - 1], 0, 3), "UTF-8"),
-                        0,
-                        $row[$sum_param]
-                    );
-                }
-                */
 /*
                 const chartDataFTS0 = [
 { 'month' : 'Янв', 'year1' : 6, 'year2' : 20 },
@@ -1338,65 +1311,16 @@ LIMIT 1000";
 { 'month' : 'Ноя', 'year1' : 0, 'year2' : 16 },
 { 'month' : 'Дек', 'year1' : 0, 'year2' : 35 }                                    ]
 */
+            }
 
-                $fts_data_tmp[] = $row[$sum_param];
-
-                if ($row['year'] != $last_year && ($j % 2 == 0)) { // пишем только для чётных // если год не равен прошлому, то есть обычный график с чередованием через один
-                    // TODO: найти баг с выводом для 2014 года
-                    $chart_fts_format_string1 = "{ 'month' : '%s', 'year1' : %s, 'year2' : %s }";
-                    $chart_fts_data[$i][] = sprintf(
-                        $chart_fts_format_string1, // делим на два набора в одной диаграмме
-                        short_month($row['month']),
-                        $sum_last_year,
-                        $row[$sum_param]
-                    );
-                } elseif ($row['year'] == $last_year && ($j % 2 == 0) && $last_year != '2014') { // повторяющийся год // || $row['year'] == '2021'
-//                    $last_year = $row['year'];
-                    $chart_fts_format_string2 = "  { 'month' : '%s', 'year1' : %s, 'year2' : %s }  ";
-                    $chart_fts_data[$i][] = sprintf(
-                        $chart_fts_format_string2, // делим на два набора в одной диаграмме
-                        short_month($last_month),
-                        $sum_last_year,
-                        0
-                    );
-                    $chart_fts_data[$i][] = sprintf(
-                        $chart_fts_format_string2, // делим на два набора в одной диаграмме
-                        short_month($row['month']),
-                        $row[$sum_param],
-                        0
-                    );
-
-                } elseif (($j % 2 == 0) && $last_year == '2014') {
-                    $chart_fts_format_string2 = "{ 'month' : '%s', 'year1' : %s, 'year2' : %s }";
-                    $chart_fts_data[$i][] = sprintf(
-                        $chart_fts_format_string2, // делим на два набора в одной диаграмме
-                        short_month($last_month),
-                        0,
-                        $sum_last_year
-                    );
-                    $chart_fts_data[$i][] = sprintf(
-                        $chart_fts_format_string2, // делим на два набора в одной диаграмме
-                        short_month($row['month']),
-                        0,
-                        $row[$sum_param]
-                    );
-                }
-//                elseif ($row['year'] == $last_year && ($j % 2 !== 0) && $last_year == '2021') {
-//                    $chart_fts_format_string2 = "{ 'month' : '%s', 'year1' : %s, 'year2' : %s }";
-//
-//                    $chart_fts_data[$i][] = sprintf(
-//                        $chart_fts_format_string2, // делим на два набора в одной диаграмме
-//                        short_month($row['month']),
-//                        $row[$sum_param],
-//                        0
-//                    );
-//                }
-
-                $last_month = $row['month'];
-                $last_year = $row['year']; // записываем значение прошлого параметра
-                $sum_last_year = $row[$sum_param]; // записываем значение прошлого параметра
-
-                $j++;
+            foreach ($fts_data_tmp[$i] as $row_month => $row_years) {
+                $row_values = array_values($row_years);
+                $chart_fts_data[$i][] = sprintf(
+                    "{ 'month' : '%s', 'year1' : %s, 'year2' : %s }",
+                    short_month($row_month),
+                    $row_values[0] ?: 0,
+                    $row_values[1] ?: 0
+                );
             }
         }
     } else {

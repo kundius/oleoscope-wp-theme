@@ -112,7 +112,7 @@ function oleoscope_register_cpts() {
 
 	// Events' news
 	$labels5 = array(
-		'name' => 'Мероприятия',
+		'name' => 'Календарь',
 		'singular_name' => 'Мероприятие', // Добавить->Запись (Именительный падеж)
 		'add_new' => 'Добавить мероприятие', // в меню и на кнопке
 		'add_new_item' => 'Добавить мероприятие', // заголовок
@@ -123,7 +123,7 @@ function oleoscope_register_cpts() {
 		'search_items' => 'Поиск мероприятий',
 		'not_found' =>  'Мероприятий не найдено.',
 		'not_found_in_trash' => 'Мероприятий в корзине не найдено.',
-		'menu_name' => 'Мероприятия' // ссылка в меню в админке
+		'menu_name' => 'Календарь' // ссылка в меню в админке
 	);
 	$args['labels'] = $labels5;
 	$args['menu_icon'] = 'dashicons-text-page';

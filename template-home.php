@@ -126,7 +126,7 @@ $categories = get_categories();
               <div class="masthead__secondary-cell">
                 <div class="masthead-secondary">
                   <div class="masthead-secondary__title">
-                    Отраслевой календарь
+                    Календарь
                   </div>
                   <?php foreach ($last_events as $item): ?>
                   <div class="masthead-secondary-item">
