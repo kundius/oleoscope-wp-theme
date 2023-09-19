@@ -53,15 +53,13 @@ function postviews($args = []) {
 	}
 
 	if ($do_count) {
-		$up = $wpdb->query($wpdb->prepare(
-			"UPDATE $wpdb->postmeta SET meta_value = (meta_value+1) WHERE post_id = %d AND meta_key = %s",
-			$post->ID,
-      $rg->meta_key
-		));
+		$meta_value = get_post_meta($post->ID, $rg->meta_key, true);
 
-		if (!$up) {
-			add_post_meta($post->ID, $rg->meta_key, 1, true);
+		if (!$meta_value) {
+			$meta_value = 0;
 		}
+
+		update_post_meta($post->ID, $rg->meta_key, $meta_value + 1);
 
 		wp_cache_delete($post->ID, 'post_meta');
 	}
