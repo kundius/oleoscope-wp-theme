@@ -4,7 +4,7 @@ $partners_query = new WP_Query([
   'posts_per_page' => 5,
   'order' => 'DESC',
   'meta_key' => 'views',
-  'orderby' => 'meta_value'
+  'orderby' => 'meta_value_num'
 ]);
 $partners = $partners_query->get_posts();
 ?>
