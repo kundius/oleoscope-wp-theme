@@ -1,5 +1,10 @@
 <?php
 $page = get_query_var('paged');
+$thumbsize = [300, 200];
+
+if (get_post_type() === 'interview') {
+  $thumbsize = [300, 320];
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
@@ -37,7 +42,7 @@ $page = get_query_var('paged');
                   <article class="card-small">
                     <?php if (has_post_thumbnail()): ?>
                     <figure class="card-small__media">
-                      <?php echo fly_get_attachment_image(get_post_thumbnail_id(), [300, 200], true); ?>
+                      <?php echo fly_get_attachment_image(get_post_thumbnail_id(), $thumbsize, true); ?>
                       <ul class="card-small__tags">
                         <?php $categories = get_the_category(); ?>
                         <?php if (!empty($categories)): ?>
