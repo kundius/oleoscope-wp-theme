@@ -4,7 +4,8 @@ $video_query = new WP_Query([
   'posts_per_page' => 3,
   'order' => 'DESC',
   'meta_key' => 'with_video',
-  'meta_value' => 1
+  'meta_value' => '1',
+  'meta_compare' => '='
 ]);
 $video = $video_query->get_posts();
 ?>
