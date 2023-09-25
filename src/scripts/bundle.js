@@ -1,4 +1,4 @@
-import Swiper, { EffectCoverflow, EffectCreative, Pagination, Navigation } from "swiper";
+import Swiper, { Autoplay, EffectCoverflow, EffectCreative, Pagination, Navigation } from "swiper";
 import HystModal from "hystmodal";
 
 new HystModal({
@@ -19,7 +19,7 @@ new Swiper(".nav-slider .swiper", {
 });
 
 new Swiper(".masthead-primary .swiper", {
-  modules: [Pagination],
+  modules: [Pagination, Autoplay],
   speed: 500,
   spaceBetween: 12,
   loop: true,
