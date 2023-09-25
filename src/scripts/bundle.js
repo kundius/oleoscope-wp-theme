@@ -23,6 +23,10 @@ new Swiper(".masthead-primary .swiper", {
   speed: 500,
   spaceBetween: 12,
   loop: true,
+  autoplay: {
+    pauseOnMouseEnter: true,
+    delay: 4000
+  },
   // grabCursor: true,
   slidesPerView: "auto",
   pagination: {
