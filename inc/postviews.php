@@ -1,6 +1,6 @@
 <?php
 
-add_action('wp_head', 'postviews');
+add_action('init', 'postviews');
 
 /**
  * @param array $args
