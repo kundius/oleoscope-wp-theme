@@ -33,6 +33,10 @@ new Swiper(".masthead-primary .swiper", {
     clickable: true,
     el: ".swiper-pagination",
   },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 });
 
 const drawer = document.querySelector('.drawer')
