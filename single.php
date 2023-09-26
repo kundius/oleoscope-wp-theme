@@ -21,7 +21,7 @@
                 </figure>
                 <?php endif; ?>
                 <div class="details__date"><?php echo get_the_date('d.m.Y') ?></div>
-                <!-- <?php the_field('with_video') ?> -->
+                <!-- <?php the_field('views') ?> -->
                 <h1 class="details__title"><?php the_title() ?></h1>
                 <div class="details__content content">
                   <?php the_content() ?>
