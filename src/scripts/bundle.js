@@ -19,7 +19,7 @@ new Swiper(".nav-slider .swiper", {
 });
 
 new Swiper(".masthead-primary .swiper", {
-  modules: [Pagination, Autoplay],
+  modules: [Pagination, Autoplay, Navigation],
   speed: 500,
   spaceBetween: 12,
   loop: true,
