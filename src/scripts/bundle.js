@@ -18,22 +18,22 @@ new Swiper(".nav-slider .swiper", {
   },
 });
 
-// new Swiper(".masthead-primary .swiper", {
-//   modules: [Pagination, Autoplay],
-//   speed: 500,
-//   spaceBetween: 12,
-//   loop: true,
-//   autoplay: {
-//     // pauseOnMouseEnter: true,
-//     delay: 4000
-//   },
-//   // grabCursor: true,
-//   slidesPerView: "auto",
-//   pagination: {
-//     clickable: true,
-//     el: ".swiper-pagination",
-//   },
-// });
+new Swiper(".masthead-primary .swiper", {
+  modules: [Pagination, Autoplay],
+  speed: 500,
+  spaceBetween: 12,
+  loop: true,
+  autoplay: {
+    // pauseOnMouseEnter: true,
+    delay: 4000
+  },
+  // grabCursor: true,
+  slidesPerView: "auto",
+  pagination: {
+    clickable: true,
+    el: ".swiper-pagination",
+  },
+});
 
 const drawer = document.querySelector('.drawer')
 const drawerToggle = document.querySelector('.header-main__menu')
