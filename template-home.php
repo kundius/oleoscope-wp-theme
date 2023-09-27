@@ -23,7 +23,9 @@ $week_news_query = new WP_Query([
   'posts_per_page' => 8,
   'order' => 'DESC',
   'orderby' => 'date',
-  'category__in' => [1041]
+  'meta_key' => 'featured',
+  'meta_value' => '1',
+  'meta_compare' => '='
 ]);
 $week_news = $week_news_query->get_posts();
 
