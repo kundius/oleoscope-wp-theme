@@ -24,7 +24,7 @@ new Swiper(".masthead-primary .swiper", {
   spaceBetween: 12,
   loop: true,
   autoplay: {
-    // pauseOnMouseEnter: true,
+    disableOnInteraction: false,
     delay: 4000
   },
   // grabCursor: true,
