@@ -19,7 +19,7 @@ new Swiper(".nav-slider .swiper", {
 });
 
 new Swiper(".masthead-primary .swiper", {
-  modules: [Pagination, Autoplay, Navigation],
+  modules: [Pagination, Autoplay],
   speed: 500,
   spaceBetween: 12,
   loop: true,
@@ -32,10 +32,6 @@ new Swiper(".masthead-primary .swiper", {
   pagination: {
     clickable: true,
     el: ".swiper-pagination",
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
   },
 });
 
