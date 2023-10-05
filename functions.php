@@ -170,13 +170,13 @@ function get_attachment_callback() {
 
 
 // ACF
-// \acf_add_options_page(array(
-//     'page_title' => 'Параметры',
-//     'menu_title' => 'Параметры',
-//     'menu_slug' => 'acf-options',
-//     'capability' => 'edit_posts',
-//     'redirect' => false,
-// ));
+\acf_add_options_page(array(
+    'page_title' => 'Параметры',
+    'menu_title' => 'Параметры',
+    'menu_slug' => 'acf-options',
+    'capability' => 'edit_posts',
+    'redirect' => false,
+));
 
 add_filter( 'get_the_archive_title', function( $title ){
     return preg_replace('~^[^:]+: ~', '', $title );
