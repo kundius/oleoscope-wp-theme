@@ -66,8 +66,41 @@ add_shortcode('directions', 'directions_shortcode');
 
 
 function hot_shortcode($atts, $content = null) {
-  extract(shortcode_atts([], $atts));
-  return load_template_part('partials/widget-hot');
+  extract(shortcode_atts([
+    'hot_date_after' => '-3 days'
+  ], $atts));
+
+  $partners_query = new WP_Query([
+    'post_type' => 'news',
+    'posts_per_page' => 5,
+    'order' => 'DESC',
+    'meta_key' => 'views',
+    'orderby' => 'meta_value_num',
+    'date_query' => [
+      [
+        'after' => $hot_date_after,
+        'column' => 'post_date',
+      ],
+    ],
+  ]);
+  $partners = $partners_query->get_posts();
+
+  $output = '<div class="hot-list">';
+  foreach ($partners as $item) {
+    $output .= '<div class="hot-list__item">';
+    $output .= '<article class="card-flat">';
+    $output .= '<a href="'. get_the_permalink($item) . '" class="card-flat__title">';
+    $output .= get_the_title($item);
+    $output .= '</a>';
+    $output .= '<div class="card-flat__foot">';
+    $output .= '<div class="card-flat__date">' . get_the_date('d.m.Y', $item) . '</div>';
+    $output .= '</div>';
+    $output .= '</article>';
+    $output .= '</div>';
+  }
+  $output .= '</div>';
+
+  return $output;
 }
 add_shortcode('hot', 'hot_shortcode');
 

@@ -169,20 +169,6 @@ function get_attachment_callback() {
 \add_action('wp_ajax_nopriv_get_attachment', 'get_attachment_callback');
 
 
-// ACF
-function add_my_options_page() {
-    if (function_exists('acf_add_options_page')) {
-        acf_add_options_page(array(
-            'page_title' => 'Параметры',
-            'menu_title' => 'Параметры',
-            'menu_slug' => 'acf-options',
-            'capability' => 'edit_posts',
-            'redirect' => false,
-        ));
-    }
-}
-add_action( 'plugins_loaded', 'add_my_options_page' );
-
 add_filter( 'get_the_archive_title', function( $title ){
     return preg_replace('~^[^:]+: ~', '', $title );
 });
