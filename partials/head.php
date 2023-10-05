@@ -14,7 +14,5 @@
 <link rel="shortcut icon" href="<?php bloginfo('template_url') ?>/favicon.ico" type="image/x-icon">
 <meta name="cmsmagazine" content="ef9002bde22164e1bb8ca1b1793cf47b">
 <meta name="yandex-verification" content="">
-<meta itemprop="name" content="<?php bloginfo('blogname') ?>">
-<meta itemprop="description" content="<?php bloginfo('description') ?>">
 
 <?php wp_head() ?>
