@@ -67,7 +67,7 @@ add_shortcode('directions', 'directions_shortcode');
 
 function hot_shortcode($atts, $content = null) {
   extract(shortcode_atts([
-    'hot_date_after' => '-3 days'
+    'date_after' => '-3 days'
   ], $atts));
 
   $partners_query = new WP_Query([
@@ -78,7 +78,7 @@ function hot_shortcode($atts, $content = null) {
     'orderby' => 'meta_value_num',
     'date_query' => [
       [
-        'after' => $hot_date_after,
+        'after' => $date_after,
         'column' => 'post_date',
       ],
     ],
