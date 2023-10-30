@@ -74,17 +74,17 @@ $categories = get_categories();
                 <div class="masthead-primary__title">Новости недели</div>
                 <div class="swiper">
                   <div class="swiper-wrapper">
-                    <?php foreach ($week_news as $item): ?>
+                    <?php foreach ($week_news as $key => $item): ?>
                     <div class="swiper-slide">
                       <div class="masthead-primary-item">
                         <div class="masthead-primary-item__image">
-                          <?php echo bis_get_attachment_picture(
+                          <?php echo str_replace($key === 0 ? '' : 'loading="lazy"', '', bis_get_attachment_picture(
                             get_post_thumbnail_id($item),
                             [
                               767 => [ 480, 320, 1 ],
                               9999 => [ 1024, 640, 1 ],
                             ]
-                          ); ?>
+                          )); ?>
                         </div>
                         <div class="masthead-primary-item__content">
                           <div class="masthead-primary-item__tags">
