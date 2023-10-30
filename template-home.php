@@ -82,7 +82,8 @@ $categories = get_categories();
                             get_post_thumbnail_id($item),
                             [
                               320 => [ 480, 320, 1 ],
-                              1199 => [ 900, 640, 1 ]
+                              767 => [ 1024, 640, 1 ],
+                              1279 => [ 1024, 640, 1 ]
                             ]
                           ); ?>
                         </div>
@@ -117,15 +118,19 @@ $categories = get_categories();
                   <?php foreach ($last_interview as $item): ?>
                   <div class="masthead-secondary-item">
                     <div class="masthead-secondary-item__image">
-                      <?php echo get_the_post_thumbnail($item, 'large'); ?>
+                      <?php echo bis_get_attachment_picture(
+                        get_post_thumbnail_id($item),
+                        [
+                          320 => [ 480, 320, 1 ],
+                          767 => [ 480, 480, 1 ],
+                          1279 => [ 480, 480, 1 ]
+                        ]
+                      ); ?>
                     </div>
                     <div class="masthead-secondary-item__content">
                       <a href="<?php the_permalink($item) ?>" class="masthead-secondary-item__title">
                         <?php echo get_the_title($item) ?>
                       </a>
-                      <!-- <div class="masthead-secondary-item__date">
-                        <?php echo get_the_date('d.m.Y', $item) ?>
-                      </div> -->
                     </div>
                   </div>
                   <?php endforeach; ?>
@@ -139,7 +144,14 @@ $categories = get_categories();
                   <?php foreach ($last_events as $item): ?>
                   <div class="masthead-secondary-item">
                     <div class="masthead-secondary-item__image">
-                      <?php echo get_the_post_thumbnail($item, 'large'); ?>
+                      <?php echo bis_get_attachment_picture(
+                        get_post_thumbnail_id($item),
+                        [
+                          320 => [ 480, 320, 1 ],
+                          767 => [ 480, 480, 1 ],
+                          1279 => [ 480, 480, 1 ]
+                        ]
+                      ); ?>
                     </div>
                     <div class="masthead-secondary-item__content">
                       <a href="<?php the_permalink($item) ?>" class="masthead-secondary-item__title">
@@ -166,7 +178,17 @@ $categories = get_categories();
                   <div class="analytics-list__item">
                     <article class="card-medium">
                       <figure class="card-medium__media">
-                        <?php echo get_the_post_thumbnail($item, 'large', ['class' => 'card-medium__image']); ?>
+                        <?php echo bis_get_attachment_picture(
+                          get_post_thumbnail_id($item),
+                          [
+                            320 => [ 480, 320, 1 ],
+                            767 => [ 480, 480, 1 ],
+                            1279 => [ 480, 480, 1 ]
+                          ],
+                          [
+                            'class' => 'card-medium__image'
+                          ]
+                        ); ?>
                         <ul class="card-medium__tags">
                           <?php $categories = get_the_category($item->ID); ?>
                           <?php if (!empty($categories)): ?>
