@@ -78,7 +78,7 @@ $categories = get_categories();
                     <div class="swiper-slide">
                       <div class="masthead-primary-item">
                         <div class="masthead-primary-item__image">
-                          <?php echo str_replace($key === 0 ? '' : 'loading="lazy"', '', bis_get_attachment_picture(
+                          <?php echo str_replace($key === 0 ? 'loading="lazy"' : '', '', bis_get_attachment_picture(
                             get_post_thumbnail_id($item),
                             [
                               767 => [ 480, 320, 1 ],
