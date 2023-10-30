@@ -82,6 +82,7 @@ $categories = get_categories();
                             get_post_thumbnail_id($item),
                             [
                               767 => [ 480, 320, 1 ],
+                              9999 => [ 1024, 640, 1 ],
                             ]
                           ); ?>
                         </div>
@@ -120,6 +121,7 @@ $categories = get_categories();
                         get_post_thumbnail_id($item),
                         [
                           767 => [ 480, 320, 1 ],
+                          9999 => [ 480, 480, 1 ],
                         ]
                       ); ?>
                     </div>
@@ -144,6 +146,7 @@ $categories = get_categories();
                         get_post_thumbnail_id($item),
                         [
                           767 => [ 480, 320, 1 ],
+                          9999 => [ 480, 480, 1 ],
                         ]
                       ); ?>
                     </div>
@@ -176,6 +179,7 @@ $categories = get_categories();
                           get_post_thumbnail_id($item),
                           [
                             767 => [  480, 320, 1 ],
+                            9999 => [ 640, 480, 1 ],
                           ],
                           [
                             'class' => 'card-medium__image'
