@@ -9,7 +9,7 @@
             <div class="header-main__search">
                 <form role="search" id="searchform" method="get" class="searchform" action="<?php echo home_url( '/' ); ?>">
                     <input type="text" class="searchform__control" placeholder="<?php echo esc_attr_x( 'Найти на сайте …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Search for:', 'label' ) ?>">
-                    <button class="searchform__submit"></button>
+                    <button class="searchform__submit" aria-label="Поиск"></button>
                 </form>
             </div>
             <a href="/?s=" aria-label="Поиск" class="header-main__search-link"></a>
