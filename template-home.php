@@ -182,8 +182,8 @@ $categories = get_categories();
                           get_post_thumbnail_id($item),
                           [
                             320 => [ 480, 320, 1 ],
-                            767 => [ 480, 480, 1 ],
-                            1279 => [ 480, 480, 1 ]
+                            767 => [ 1024, 640, 1 ],
+                            1279 => [ 1024, 640, 1 ]
                           ],
                           [
                             'class' => 'card-medium__image'
