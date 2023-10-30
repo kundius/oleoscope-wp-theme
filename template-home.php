@@ -117,13 +117,13 @@ $categories = get_categories();
                   <?php foreach ($last_interview as $item): ?>
                   <div class="masthead-secondary-item">
                     <div class="masthead-secondary-item__image">
-                      <?php echo bis_get_attachment_picture(
+                      <?php echo str_replace('loading="lazy"', '', bis_get_attachment_picture(
                         get_post_thumbnail_id($item),
                         [
                           767 => [ 480, 320, 1 ],
                           9999 => [ 480, 480, 1 ],
                         ]
-                      ); ?>
+                      )); ?>
                     </div>
                     <div class="masthead-secondary-item__content">
                       <a href="<?php the_permalink($item) ?>" class="masthead-secondary-item__title">
@@ -142,13 +142,13 @@ $categories = get_categories();
                   <?php foreach ($last_events as $item): ?>
                   <div class="masthead-secondary-item">
                     <div class="masthead-secondary-item__image">
-                      <?php echo bis_get_attachment_picture(
+                      <?php echo str_replace('loading="lazy"', '', bis_get_attachment_picture(
                         get_post_thumbnail_id($item),
                         [
                           767 => [ 480, 320, 1 ],
                           9999 => [ 480, 480, 1 ],
                         ]
-                      ); ?>
+                      )); ?>
                     </div>
                     <div class="masthead-secondary-item__content">
                       <a href="<?php the_permalink($item) ?>" class="masthead-secondary-item__title">
