@@ -1,7 +1,7 @@
 <div class="header">
     <div class="header-main">
         <div class="container header-main__container">
-            <button class="header-main__menu"></button>
+            <button class="header-main__menu" aria-label="Меню"></button>
             <a href="/" class="header-main__logo">
                 <img src="<?php bloginfo('template_url') ?>/dist/images/logo.svg" alt="<?php bloginfo('name') ?>" width="300" height="100" >
             </a>
@@ -12,7 +12,7 @@
                     <button class="searchform__submit"></button>
                 </form>
             </div>
-            <a href="/?s=" class="header-main__search-link"></a>
+            <a href="/?s=" aria-label="Поиск" class="header-main__search-link"></a>
             <div class="header-main__divider-2"></div>
             <div class="header-main__subscribe">
                 <a href="/about/subscription" class="header-subscribe">
