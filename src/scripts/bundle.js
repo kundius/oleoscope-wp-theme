@@ -25,7 +25,7 @@ new Swiper(".masthead-primary .swiper", {
   loop: true,
   autoplay: {
     disableOnInteraction: false,
-    delay: 4000
+    delay: 6000
   },
   // grabCursor: true,
   slidesPerView: "auto",
