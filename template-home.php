@@ -78,7 +78,13 @@ $categories = get_categories();
                     <div class="swiper-slide">
                       <div class="masthead-primary-item">
                         <div class="masthead-primary-item__image">
-                          <?php echo get_the_post_thumbnail($item, 'large'); ?>
+                          <?php echo bis_get_attachment_picture(
+                            get_post_thumbnail_id(),
+                            [
+                              320 => [ 480, 320, 1 ],
+                              1199 => [ 900, 640, 1 ]
+                            ]
+                          ); ?>
                         </div>
                         <div class="masthead-primary-item__content">
                           <div class="masthead-primary-item__tags">
