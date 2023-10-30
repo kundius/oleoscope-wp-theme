@@ -139,9 +139,6 @@ $categories = get_categories();
                       <a href="<?php the_permalink($item) ?>" class="masthead-secondary-item__title">
                         <?php echo get_the_title($item) ?>
                       </a>
-                      <!-- <div class="masthead-secondary-item__date">
-                        <?php echo get_the_date('d.m.Y', $item) ?>
-                      </div> -->
                     </div>
                   </div>
                   <?php endforeach; ?>
