@@ -79,7 +79,7 @@ $categories = get_categories();
                       <div class="masthead-primary-item">
                         <div class="masthead-primary-item__image">
                           <?php echo bis_get_attachment_picture(
-                            get_post_thumbnail_id(),
+                            get_post_thumbnail_id($item),
                             [
                               320 => [ 480, 320, 1 ],
                               1199 => [ 900, 640, 1 ]
