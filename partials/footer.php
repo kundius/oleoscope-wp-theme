@@ -35,6 +35,16 @@
         </div>
         <div class="footer-secondary__copyright">© OleoScope 2023</div>
         <div class="footer-secondary__counters">
+          <!-- Google tag (gtag.js) -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-9M1PVGTD44"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', 'G-9M1PVGTD44');
+          </script>
+          
           <!-- Yandex.Metrika counter -->
           <script type="text/javascript" >
              (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
