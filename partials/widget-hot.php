@@ -7,8 +7,7 @@ $partners_query = new WP_Query([
   'post_type' => 'news',
   'posts_per_page' => 5,
   'order' => 'DESC',
-  'meta_key' => 'post_views_count',
-  'orderby' => 'meta_value_num',
+  'orderby' => 'post_views',
   'date_query' => [
     [
       'after' => $hot_date_after,
