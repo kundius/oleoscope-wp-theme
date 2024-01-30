@@ -1152,8 +1152,8 @@ LIMIT 1000";
         $query = "SELECT " . $fields .
             " FROM " . $table .
             " WHERE " . $where .
-            	         " GROUP BY YEAR(`delivery_date`), MONTH(`delivery_date`)" .
-            	         " ORDER BY delivery_date" .
+            	         // " GROUP BY YEAR(`delivery_date`), MONTH(`delivery_date`)" .
+            	         // " ORDER BY delivery_date" .
             $group_by .
             " LIMIT 1000";
     }
@@ -1372,7 +1372,7 @@ LIMIT 1000";
 
         // Table rows
         while ($row = $result->fetch_row()) {
-		echo '<pre>';print_r($row);echo '</pre>';
+		// echo '<pre>';print_r($row);echo '</pre>';
             $table_row_class = '';
 
             // gray <tr>
