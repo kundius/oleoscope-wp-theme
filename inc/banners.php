@@ -1,14 +1,20 @@
 <?php
 
-function wpb_load_widget() {
-    register_widget( 'banner_widget' );
+function banner_load_widget() {
+    register_widget( 'Banner_Widget' );
 }
-add_action( 'widgets_init', 'wpb_load_widget' );
+add_action( 'widgets_init', 'banner_load_widget' );
 
-class banner_widget extends WP_Widget {
+class Banner_Widget extends WP_Widget {
 
     function __construct() {
-        parent::__construct('banner_widget', 'Баннер', array());
+        parent::__construct(
+            'banner_widget',
+            'Баннер',
+            array(
+                'description' => 'Предназначен для области с баннерами. Выводится один баннер на область в случайном порядке.'
+            )
+        );
     }
 
     public function widget( $args, $instance ) {
