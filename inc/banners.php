@@ -20,21 +20,23 @@ class Banner_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
         $title = apply_filters( 'widget_title', $instance['title'] );
         $widget_id = $args['widget_id'];
+        $url = get_field('url', 'widget_' . $widget_id);
+        $image = get_field('image', 'widget_' . $widget_id);
 
         echo $args['before_widget'];
         if ( ! empty( $title ) )
         echo $args['before_title'] . $title . $args['after_title'];
 
-        /* Здесь будем выводить метаданные */
+        echo '<a href="' . $url . '"><img src="' . $image['url'] . '" /></a>';
 
         echo $args['after_widget'];
     }
 
     public function form( $instance ) {
         if ( isset( $instance[ 'title' ] ) ) {
-        $title = $instance[ 'title' ];
+            $title = $instance[ 'title' ];
         } else {
-        $title = 'Баннер';
+            $title = 'Баннер';
         }
         ?>
         <p>
