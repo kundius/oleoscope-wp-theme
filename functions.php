@@ -5,6 +5,7 @@ require 'inc/pagination.php';
 require 'inc/shortcodes.php';
 require 'inc/sidebars.php';
 require 'inc/seo.php';
+require 'inc/banners.php';
 
 function load_template_part($template_name, $part_name = null) {
     ob_start();
@@ -204,21 +205,4 @@ function current_type_nav_class($classes, $item) {
 		}
 
     return $classes;
-}
-
-
-if (function_exists('acf_add_options_page')) {
-  acf_add_options_page(array(
-    'page_title' => 'Основные настройки',
-    'menu_title' => 'Настройки темы',
-    'menu_slug' => 'theme-general-settings',
-    'capability' => 'edit_posts',
-    'redirect' => false
-  ));
-  
-  acf_add_options_sub_page(array(
-    'page_title' => 'Настройки баннеров',
-    'menu_title' => 'Баннеры',
-    'parent_slug' => 'theme-general-settings',
-  ));
 }

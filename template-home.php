@@ -68,6 +68,8 @@ $categories = get_categories();
             <div class="nav-slider-button-next"></div>
           </div>
 
+          <!-- <?php dynamic_sidebar('banner-1'); ?> -->
+
           <div class="masthead">
             <div class="masthead__primary">
               <div class="masthead-primary">
