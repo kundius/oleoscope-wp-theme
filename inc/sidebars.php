@@ -25,6 +25,17 @@ function register_my_widgets() {
   ));
 
   register_sidebar(array(
+    'id' => 'news-feed',
+    'name' => 'В фиде',
+    'before_sidebar' => '<div class="widgets-news-feed">',
+    'after_sidebar' => "</div>\n",
+    'before_widget' => '<div id="%1$s" class="widget-news-feed %2$s">',
+    'after_widget' => "</div>\n",
+    'before_title' => '<div class="widget-news-feed__title">',
+    'after_title' => "</div>\n",
+  ));
+
+  register_sidebar(array(
     'name' => "Сайдбар на главной странице слева",
     'id' => "home-left",
     'description' => '',

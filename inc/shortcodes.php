@@ -39,7 +39,9 @@ function feed_shortcode($atts, $content = null) {
   $news = $news_query->get_posts();
 
   $output = '<div class="news-feed">';
+  $idx = 0;
   foreach ($news as $item) {
+    $idx++;
     $output .= '<div class="news-feed__row">';
     $output .= '<article class="news-feed__item">';
     $output .= '<a href="' . get_the_permalink($item) . '" class="news-feed__title">';
@@ -50,6 +52,9 @@ function feed_shortcode($atts, $content = null) {
     $output .= '</div>';
     $output .= '</article>';
     $output .= '</div>';
+    if ($idx === 2) {
+      $output .= get_dynamic_sidebar('news-feed');
+    }
   }
   $output .= '</div>';
   

@@ -7,6 +7,17 @@ require 'inc/sidebars.php';
 require 'inc/seo.php';
 require 'inc/banners.php';
 
+if (!function_exists('get_dynamic_sidebar')) {
+    function get_dynamic_sidebar($sidebar_id)
+    {
+        ob_start();
+        dynamic_sidebar($sidebar_id);
+        $out = ob_get_contents();
+        ob_end_clean();
+        return $out;
+    }
+}
+
 function load_template_part($template_name, $part_name = null) {
     ob_start();
     get_template_part($template_name, $part_name);
