@@ -51,3 +51,19 @@ if (drawerToggle && drawer) {
     }
   })
 }
+
+function randomNumber(min, max){
+  const r = Math.random()*(max-min) + min
+  return Math.floor(r)
+}
+
+const bannerSidebars = document.querySelectorAll('.banner-sidebar') || []
+bannerSidebars.forEach((bannerSidebar) => {
+  if (bannerSidebar.children.length > 0) {
+    bannerSidebar.classList.add('banner-sidebar_show')
+    const child = bannerSidebar.children[randomNumber(0, bannerSidebar.children.length-1)]
+    if (child) {
+      child.classList.add('banner-sidebar__widget_show')
+    }
+  }
+})
