@@ -68,7 +68,7 @@ $categories = get_categories();
             <div class="nav-slider-button-next"></div>
           </div>
 
-          <?php dynamic_sidebar('before-masthead'); ?>
+          <?php dynamic_sidebar('home-top'); ?>
 
           <div class="masthead">
             <div class="masthead__primary">

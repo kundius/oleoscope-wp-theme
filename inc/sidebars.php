@@ -3,24 +3,24 @@ add_action('widgets_init', 'register_my_widgets');
 
 function register_my_widgets() {
   register_sidebar(array(
-    'id' => 'home-before-main',
+    'id' => 'home-top',
     'name' => 'На главной перед контентом',
-    'before_sidebar' => '<div class="widgets-home-before-main">',
+    'before_sidebar' => '<div class="widgets-home-top">',
     'after_sidebar' => "</div>\n",
-    'before_widget' => '<div id="%1$s" class="widget-home-before-main %2$s">',
+    'before_widget' => '<div id="%1$s" class="widget-home-top %2$s">',
     'after_widget' => "</div>\n",
-    'before_title' => '<div class="widget-home-before-main__title">',
+    'before_title' => '<div class="widget-home-top__title">',
     'after_title' => "</div>\n",
   ));
 
   register_sidebar(array(
-    'id' => 'archive-before-main',
+    'id' => 'archive-top',
     'name' => 'В архиве перед контентом',
-    'before_sidebar' => '<div class="widgets-archive-before-main">',
+    'before_sidebar' => '<div class="widgets-archive-top">',
     'after_sidebar' => "</div>\n",
-    'before_widget' => '<div id="%1$s" class="widget-archive-before-main %2$s">',
+    'before_widget' => '<div id="%1$s" class="widget-archive-top %2$s">',
     'after_widget' => "</div>\n",
-    'before_title' => '<div class="widget-archive-before-main__title">',
+    'before_title' => '<div class="widget-archive-top__title">',
     'after_title' => "</div>\n",
   ));
 
