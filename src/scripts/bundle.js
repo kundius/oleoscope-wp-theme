@@ -88,8 +88,10 @@ bannerWidgets.forEach((bannerWidget) => {
 
   const siblingWidgets = [bannerWidget]
 
+  idx = 0
   let sibling = bannerWidget.nextSibling
-  while (sibling) {
+  while (sibling && idx < 100) {
+    idx++
     console.log('2', sibling.nodeType, sibling)
     if (!!sibling && sibling.nodeType === 1 && !sibling.classList.includes('widget_banner_widget')) {
       sibling = false
