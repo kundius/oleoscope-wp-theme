@@ -100,7 +100,7 @@ bannerWidgets.forEach((bannerWidget) => {
       sibling = sibling.nextSibling
     }
     else {
-      sibling = bannerWidget.nextSibling
+      sibling = sibling.nextSibling
     }
   }
   console.log('3', siblingWidgets)
