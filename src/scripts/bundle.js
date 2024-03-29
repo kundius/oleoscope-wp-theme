@@ -81,7 +81,7 @@ function getWidgetSiblings(el) {
 const bannerWidgetsProcessed = []
 const bannerWidgets = document.querySelectorAll('.widget_banner_widget') || []
 bannerWidgets.forEach((bannerWidget) => {
-  console.log(bannerWidgetsProcessed, bannerWidget, bannerWidgetsProcessed.includes(bannerWidget))
+  console.log('1', bannerWidgetsProcessed, bannerWidget, bannerWidgetsProcessed.includes(bannerWidget))
   if (bannerWidgetsProcessed.includes(bannerWidget)) {
     return
   }
@@ -90,7 +90,9 @@ bannerWidgets.forEach((bannerWidget) => {
 
   let sibling = bannerWidget.nextSibling
   while (sibling) {
+    console.log('2', sibling)
     if (!!sibling && sibling.nodeType === 1 && sibling.classList.includes('widget_banner_widget')) {
+      console.log('3', sibling)
       bannerWidgetsProcessed.push(sibling)
       siblingWidgets.push(sibling)
       sibling = sibling.nextSibling
