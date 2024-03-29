@@ -90,7 +90,7 @@ bannerWidgets.forEach((bannerWidget) => {
 
   let sibling = bannerWidget.nextSibling
   while (sibling) {
-    console.log('2', sibling)
+    console.log('2', sibling.nodeType, sibling)
     if (!sibling) {
       sibling = false
     } else if (sibling.nodeType !== 1) {
@@ -103,6 +103,7 @@ bannerWidgets.forEach((bannerWidget) => {
       sibling = false
     }
   }
+  console.log('3', siblingWidgets)
 
   const selected = siblingWidgets[getRandomInt(0, siblingWidgets.length - 1)]
   if (selected) {
