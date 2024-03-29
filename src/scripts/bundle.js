@@ -88,23 +88,23 @@ bannerWidgets.forEach((bannerWidget) => {
 
   const siblingWidgets = [bannerWidget]
 
-  // let idx = 0
-  // let sibling = bannerWidget.nextSibling
-  // while (sibling && idx < 100) {
-  //   idx++
-  //   console.log('2', sibling.nodeType, sibling)
-  //   if (!!sibling && sibling.nodeType === 1 && !sibling.classList.includes('widget_banner_widget')) {
-  //     sibling = false
-  //   }
-  //   else if (!!sibling && sibling.nodeType === 1 && sibling.classList.includes('widget_banner_widget')) {
-  //     bannerWidgetsProcessed.push(sibling)
-  //     siblingWidgets.push(sibling)
-  //     sibling = sibling.nextSibling
-  //   }
-  //   else {
-  //     sibling = sibling.nextSibling
-  //   }
-  // }
+  let idx = 0
+  let sibling = bannerWidget.nextSibling
+  while (sibling && idx < 100) {
+    idx++
+    console.log('2', sibling.nodeType, sibling)
+    if (!!sibling && sibling.nodeType === 1 && !sibling.classList.includes('widget_banner_widget')) {
+      sibling = false
+    }
+    else if (!!sibling && sibling.nodeType === 1 && sibling.classList.includes('widget_banner_widget')) {
+      bannerWidgetsProcessed.push(sibling)
+      siblingWidgets.push(sibling)
+      sibling = sibling.nextSibling
+    }
+    else {
+      sibling = sibling.nextSibling
+    }
+  }
   console.log('3', siblingWidgets)
 
   const selected = siblingWidgets[getRandomInt(0, siblingWidgets.length - 1)]
