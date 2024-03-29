@@ -55,7 +55,8 @@ class Banner_Widget extends WP_Widget {
 register_sidebar(array(
     'id' => 'banner-1',
     'name' => 'Баннер #1',
-    'class' => 'banner-sidebar',
+    'before_sidebar' => '<div class="banner-sidebar">',
+    'after_sidebar' => "</div>\n",
     'before_widget' => '<div id="%1$s" class="%2$s">',
     'after_widget' => "</div>\n",
 ));
@@ -63,7 +64,8 @@ register_sidebar(array(
 register_sidebar(array(
     'id' => 'banner-2',
     'name' => 'Баннер #2',
-    'class' => 'banner-sidebar',
+    'before_sidebar' => '<div class="banner-sidebar">',
+    'after_sidebar' => "</div>\n",
     'before_widget' => '<div id="%1$s" class="banner-sidebar %2$s">',
     'after_widget' => "</div>\n",
 ));
@@ -71,7 +73,8 @@ register_sidebar(array(
 register_sidebar(array(
     'id' => 'banner-3',
     'name' => 'Баннер #3',
-    'class' => 'banner-sidebar',
+    'before_sidebar' => '<div class="banner-sidebar">',
+    'after_sidebar' => "</div>\n",
     'before_widget' => '<div id="%1$s" class="banner-sidebar %2$s">',
     'after_widget' => "</div>\n",
 ));
@@ -79,7 +82,8 @@ register_sidebar(array(
 register_sidebar(array(
     'id' => 'banner-4',
     'name' => 'Баннер #4',
-    'class' => 'banner-sidebar',
+    'before_sidebar' => '<div class="banner-sidebar">',
+    'after_sidebar' => "</div>\n",
     'before_widget' => '<div id="%1$s" class="banner-sidebar %2$s">',
     'after_widget' => "</div>\n",
 ));
@@ -87,7 +91,8 @@ register_sidebar(array(
 register_sidebar(array(
     'id' => 'banner-5',
     'name' => 'Баннер #5',
-    'class' => 'banner-sidebar',
+    'before_sidebar' => '<div class="banner-sidebar">',
+    'after_sidebar' => "</div>\n",
     'before_widget' => '<div id="%1$s" class="banner-sidebar %2$s">',
     'after_widget' => "</div>\n",
 ));
