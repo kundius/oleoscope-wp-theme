@@ -91,16 +91,16 @@ bannerWidgets.forEach((bannerWidget) => {
   let sibling = bannerWidget.nextSibling
   while (sibling) {
     console.log('2', sibling.nodeType, sibling)
-    if (!sibling) {
+    if (!!sibling && sibling.nodeType === 1 && !sibling.classList.includes('widget_banner_widget')) {
       sibling = false
-    } else if (sibling.nodeType !== 1) {
-      sibling = sibling.nextSibling
-    } else if (sibling.classList.includes('widget_banner_widget')) {
+    }
+    else if (!!sibling && sibling.nodeType === 1 && sibling.classList.includes('widget_banner_widget')) {
       bannerWidgetsProcessed.push(sibling)
       siblingWidgets.push(sibling)
       sibling = sibling.nextSibling
-    } else {
-      sibling = false
+    }
+    else {
+      sibling = bannerWidget.nextSibling
     }
   }
   console.log('3', siblingWidgets)
