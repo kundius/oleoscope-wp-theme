@@ -19,6 +19,7 @@ if (get_post_type() === 'interview') {
 
       <div class="container">
         <main class="main">
+          <?php dynamic_sidebar('banner-4'); ?>
           <div class="archive-layout">
             <div class="archive-layout__content">
               <?php if (have_posts()): ?>

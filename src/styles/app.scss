@@ -8,7 +8,6 @@
 @import 'prices';
 @import 'products';
 @import 'backport';
-@import 'banners';
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -793,3 +792,21 @@ img {
 //   font-size: 16px;
 //   line-height: 1.25;
 // }
+
+.widget_banner_widget {
+  display: none;
+}
+
+.widget_banner_widget.widget_banner_widget_show {
+  display: block;
+}
+
+.widget_banner_widget a {
+  display: block;
+}
+
+.widget_banner_widget img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
