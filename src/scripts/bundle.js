@@ -60,20 +60,20 @@ function getRandomInt(min, max) {
 
 function getWidgetSiblings(el) {
   // for collecting siblings
-  let siblings = []; 
+  let siblings = [];
   // if no parent, return no sibling
-  if(!el.parentNode) {
-      return siblings;
+  if (!el.parentNode) {
+    return siblings;
   }
   // first child of the parent node
-  let sibling  = el.parentNode.firstChild;
-  
+  let sibling = el.parentNode.firstChild;
+
   // collecting siblings
   while (sibling) {
-      if (sibling.nodeType === 1 && sibling !== el) {
-          siblings.push(sibling);
-      }
-      sibling = sibling.nextSibling;
+    if (sibling.nodeType === 1 && sibling !== el) {
+      siblings.push(sibling);
+    }
+    sibling = sibling.nextSibling;
   }
   return siblings;
 };
@@ -89,7 +89,7 @@ bannerWidgets.forEach((bannerWidget) => {
 
   let sibling = bannerWidget.nextSibling
   while (sibling) {
-    if (!!sibling && sibling.classList.includes('widget_banner_widget')) {
+    if (!!sibling && sibling.nodeType === 1 && sibling.classList.includes('widget_banner_widget')) {
       bannerWidgetsProcessed.push(sibling)
       siblingWidgets.push(sibling)
       sibling = sibling.nextSibling
@@ -98,7 +98,7 @@ bannerWidgets.forEach((bannerWidget) => {
     }
   }
 
-  const selected = siblingWidgets[getRandomInt(0, siblingWidgets.length-1)]
+  const selected = siblingWidgets[getRandomInt(0, siblingWidgets.length - 1)]
   if (selected) {
     selected.classList.add('widget_banner_widget_show')
   }
