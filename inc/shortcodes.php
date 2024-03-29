@@ -53,7 +53,9 @@ function feed_shortcode($atts, $content = null) {
     $output .= '</article>';
     $output .= '</div>';
     if ($idx === 2) {
+      $output .= '<div class="news-feed__row">';
       $output .= get_dynamic_sidebar('news-feed');
+      $output .= '</div>';
     }
   }
   $output .= '</div>';
