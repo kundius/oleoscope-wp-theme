@@ -81,6 +81,7 @@ function getWidgetSiblings(el) {
 const bannerWidgetsProcessed = []
 const bannerWidgets = document.querySelectorAll('.widget_banner_widget') || []
 bannerWidgets.forEach((bannerWidget) => {
+  console.log(bannerWidgetsProcessed, bannerWidget, bannerWidgetsProcessed.includes(bannerWidget))
   if (bannerWidgetsProcessed.includes(bannerWidget)) {
     return
   }
