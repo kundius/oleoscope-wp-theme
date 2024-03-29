@@ -58,13 +58,48 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const bannerSidebars = document.querySelectorAll('.banner-sidebar') || []
-bannerSidebars.forEach((bannerSidebar) => {
-  if (bannerSidebar.children.length > 0) {
-    bannerSidebar.classList.add('banner-sidebar_show')
-    const child = bannerSidebar.children[getRandomInt(0, bannerSidebar.children.length-1)]
-    if (child) {
-      child.classList.add('banner-sidebar__widget_show')
+function getWidgetSiblings(el) {
+  // for collecting siblings
+  let siblings = []; 
+  // if no parent, return no sibling
+  if(!el.parentNode) {
+      return siblings;
+  }
+  // first child of the parent node
+  let sibling  = el.parentNode.firstChild;
+  
+  // collecting siblings
+  while (sibling) {
+      if (sibling.nodeType === 1 && sibling !== el) {
+          siblings.push(sibling);
+      }
+      sibling = sibling.nextSibling;
+  }
+  return siblings;
+};
+
+const bannerWidgetsProcessed = []
+const bannerWidgets = document.querySelectorAll('.widget_banner_widget') || []
+bannerWidgets.forEach((bannerWidget) => {
+  if (bannerWidgetsProcessed.includes(bannerWidget)) {
+    return
+  }
+
+  const siblingWidgets = [bannerWidget]
+
+  let sibling = bannerWidget.nextSibling
+  while (sibling) {
+    if (!!sibling && sibling.classList.includes('widget_banner_widget')) {
+      bannerWidgetsProcessed.push(sibling)
+      siblingWidgets.push(sibling)
+      sibling = sibling.nextSibling
+    } else {
+      sibling = false
     }
+  }
+
+  const selected = siblingWidgets[getRandomInt(0, siblingWidgets.length-1)]
+  if (selected) {
+    selected.classList.add('widget_banner_widget_show')
   }
 })
