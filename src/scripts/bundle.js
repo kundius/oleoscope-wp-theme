@@ -81,7 +81,6 @@ function getWidgetSiblings(el) {
 const bannerWidgetsProcessed = []
 const bannerWidgets = document.querySelectorAll('.widget_banner_widget') || []
 bannerWidgets.forEach((bannerWidget) => {
-  console.log('1', bannerWidgetsProcessed, bannerWidget, bannerWidgetsProcessed.includes(bannerWidget))
   if (bannerWidgetsProcessed.includes(bannerWidget)) {
     return
   }
@@ -92,7 +91,6 @@ bannerWidgets.forEach((bannerWidget) => {
   let sibling = bannerWidget.nextSibling
   while (sibling && idx < 100) {
     idx++
-    console.log('2', sibling.nodeType, sibling)
     if (!!sibling && sibling.nodeType === 1 && !sibling.classList.contains('widget_banner_widget')) {
       sibling = false
     }
@@ -105,9 +103,15 @@ bannerWidgets.forEach((bannerWidget) => {
       sibling = sibling.nextSibling
     }
   }
-  console.log('3', siblingWidgets)
 
-  const selected = siblingWidgets[getRandomInt(0, siblingWidgets.length - 1)]
+  const ranks = siblingWidgets.map((el) => {
+    const rank = localStorage.getItem(`banner-${el.id}`) || 0
+    return rank
+  })
+
+  const lowIndex = ranks.indexOf(Math.min(...ranks))
+
+  const selected = siblingWidgets[lowIndex]
   if (selected) {
     selected.classList.add('widget_banner_widget_show')
   }
