@@ -117,8 +117,6 @@ bannerWidgets.forEach((bannerWidget) => {
 
   const lowIndex = ranks.indexOf(Math.min(...ranks))
 
-  console.log(lowIndex, ranks, siblingWidgets)
-
   const selectedEl = siblingWidgets[lowIndex]
   const selectedRank = ranks[lowIndex]
   if (selectedEl) {
