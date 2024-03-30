@@ -117,9 +117,11 @@ bannerWidgets.forEach((bannerWidget) => {
 
   const lowIndex = ranks.indexOf(Math.min(...ranks))
 
+  console.log(lowIndex, ranks, siblingWidgets)
+
   const selectedEl = siblingWidgets[lowIndex]
   const selectedRank = ranks[lowIndex]
-  if (selectedEl && selectedRank) {
+  if (selectedEl) {
     setLocalRank(selectedEl, selectedRank + 1)
     selectedEl.classList.add('widget_banner_widget_show')
   }
