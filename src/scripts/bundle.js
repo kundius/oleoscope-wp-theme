@@ -104,15 +104,23 @@ bannerWidgets.forEach((bannerWidget) => {
     }
   }
 
-  const ranks = siblingWidgets.map((el) => {
-    const rank = localStorage.getItem(`banner-${el.id}`) || 0
-    return rank
-  })
+  const getLocalRank = (el) => {
+    const tmp = localStorage.getItem(`banner-${el.id}`)
+    return tmp ? Number(tmp) : 0
+  }
+
+  const setLocalRank = (el, val) => {
+    localStorage.setItem(`banner-${el.id}`, val)
+  }
+
+  const ranks = siblingWidgets.map(getLocalRank)
 
   const lowIndex = ranks.indexOf(Math.min(...ranks))
 
-  const selected = siblingWidgets[lowIndex]
-  if (selected) {
-    selected.classList.add('widget_banner_widget_show')
+  const selectedEl = siblingWidgets[lowIndex]
+  const selectedRank = ranks[lowIndex]
+  if (selectedEl && selectedRank) {
+    setLocalRank(selectedEl, selectedRank + 1)
+    selectedEl.classList.add('widget_banner_widget_show')
   }
 })
