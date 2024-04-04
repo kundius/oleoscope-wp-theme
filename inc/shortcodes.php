@@ -30,6 +30,8 @@ function feed_shortcode($atts, $content = null) {
   $defaults = array('count' => 20);
   $atts = shortcode_atts($defaults, $atts);
   
+  $feedSidebar = get_dynamic_sidebar('news-feed');
+  
   $news_query = new WP_Query([
     'post_type' => 'news',
     'posts_per_page' => $atts['count'],
@@ -52,9 +54,9 @@ function feed_shortcode($atts, $content = null) {
     $output .= '</div>';
     $output .= '</article>';
     $output .= '</div>';
-    if ($idx === 2) {
+    if ($idx === 2 && $feedSidebar) {
       $output .= '<div class="news-feed__row">';
-      $output .= get_dynamic_sidebar('news-feed');
+      $output .= $feedSidebar;
       $output .= '</div>';
     }
   }
