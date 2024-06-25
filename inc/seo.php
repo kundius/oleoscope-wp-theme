@@ -60,6 +60,12 @@ function ats_custom_aioseo_description($text) {
   return $text;
 }
 
+add_filter('aioseo_generate_descriptions_from_content', 'aioseo_disable_autogenerate_from_content');
+
+function aioseo_disable_autogenerate_from_content($enabled) {
+  return false;
+}
+
 
 add_action('admin_head', 'sitemap_news_activation');
 function sitemap_news_activation() {
