@@ -34,7 +34,7 @@ add_filter('aioseo_title', 'ats_custom_aioseo_title');
 function ats_custom_aioseo_title($text) {
   global $wp_query;
 
-  if ($wp_query->query_vars['paged'] > 1) {
+  if (isset($wp_query->query_vars['paged']) && $wp_query->query_vars['paged'] > 1) {
     $text = implode(' - ', [
       'Страница ' . $wp_query->query_vars['paged'] . ' из ' . $wp_query->max_num_pages,
       get_page_name(),
@@ -49,7 +49,7 @@ add_filter('aioseo_description', 'ats_custom_aioseo_description');
 function ats_custom_aioseo_description($text) {
   global $wp_query;
 
-  if ($wp_query->query_vars['paged'] > 1) {
+  if (isset($wp_query->query_vars['paged']) && $wp_query->query_vars['paged'] > 1) {
     $text = implode(' - ', [
       'Страница ' . $wp_query->query_vars['paged'] . ' из ' . $wp_query->max_num_pages,
       get_page_name(),
