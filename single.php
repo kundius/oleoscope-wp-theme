@@ -1,3 +1,23 @@
+<?php
+global $post;
+
+$related_tax = 'category';
+$related_tax_ids = wp_get_object_terms($post->ID, $related_tax, ['fields' => 'ids']);
+ 
+$args = [
+  'posts_per_page' => 5,
+  'tax_query' => [
+    [
+      'taxonomy' => $related_tax,
+      'field' => 'id',
+      'include_children' => false,
+      'terms' => $related_tax_ids,
+      'operator' => 'IN'
+    ]
+  ]
+];
+$related_query = new WP_Query($args);
+?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
   <head>
@@ -25,7 +45,18 @@
                 <div class="details__content content">
                   <?php the_content() ?>
                 </div>
-                <?php get_template_part('partials/details-related') ?>
+                <?php if ($related_query->have_posts()): ?>
+                <div class="details-related">
+                  <div class="details-related__title">Похожие статьи по теме:</div>
+                  <ul class="details-related__list">
+              	    <?php while ($related_query->have_posts()): $related_query->the_post(); ?>
+                    <li>
+                      <a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+                    </li>
+              	    <?php endwhile; ?>
+                  </ul>
+                </div>
+                <?php endif; wp_reset_postdata(); ?>
               </div>
               <?php else : ?>
               Результатов не найдено
