@@ -42,7 +42,7 @@ $related_from_date = "2024-06-25";
         <main class="main">
           <div class="archive-layout">
             <div class="archive-layout__content">
-              <?php if (date("Y-m-d") > $related_from_date && have_posts()): ?>
+              <?php if (have_posts()): ?>
               <div class="details">
                 <?php if (has_post_thumbnail()): ?>
                 <figure class="details__media">
@@ -54,7 +54,7 @@ $related_from_date = "2024-06-25";
                 <div class="details__content content">
                   <?php the_content() ?>
                 </div>
-                <?php if ($related_query->have_posts()): ?>
+                <?php if (date("Y-m-d") > $related_from_date && $related_query->have_posts()): ?>
                 <div class="details-related">
                   <div class="details-related__title">Похожие статьи по теме:</div>
                   <ul class="details-related__list">
