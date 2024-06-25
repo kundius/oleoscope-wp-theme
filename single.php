@@ -5,6 +5,7 @@ $related_tax = 'post_tag';
 $related_tax_ids = wp_get_object_terms($post->ID, $related_tax, ['fields' => 'ids']);
  
 $args = [
+  'post_type' => $post->post_type,
   'posts_per_page' => 5,
   'tax_query' => [
     [
@@ -20,7 +21,6 @@ $related_query = new WP_Query($args);
 ?>
 <!-- <?php print_r($related_tax_ids) ?>  -->
 <!-- <?php print_r($args) ?>  -->
-<!-- <?php print_r($related_query) ?>  -->
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
   <head>
