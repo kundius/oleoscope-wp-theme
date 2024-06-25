@@ -25,6 +25,7 @@
                 <div class="details__content content">
                   <?php the_content() ?>
                 </div>
+                <?php get_template_part('partials/details-related') ?>
               </div>
               <?php else : ?>
               Результатов не найдено
