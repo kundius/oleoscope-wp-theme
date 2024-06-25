@@ -19,8 +19,6 @@ $args = [
 ];
 $related_query = new WP_Query($args);
 ?>
-<!-- <?php print_r($related_tax_ids) ?>  -->
-<!-- <?php print_r($args) ?>  -->
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
   <head>
