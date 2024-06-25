@@ -7,6 +7,7 @@ $related_tax_ids = wp_get_object_terms($post->ID, $related_tax, ['fields' => 'id
 $args = [
   'post_type' => $post->post_type,
   'posts_per_page' => 5,
+  'post__not_in' => [$post->ID],
   'tax_query' => [
     [
       'taxonomy' => $related_tax,
@@ -17,7 +18,14 @@ $args = [
     ]
   ]
 ];
+function filter_where($where = '') {
+  $where .= " AND post_date_gmt >= '" . date("Y-m-d", strtotime("last year")) . "'";
+  return $where;
+}
+add_filter('posts_where', 'filter_where');
 $related_query = new WP_Query($args);
+remove_filter('posts_where', 'filter_where');
+$related_from_date = "2024-06-25";
 ?>
 <!DOCTYPE html>
 <html class="no-js" <?php language_attributes();?> itemscope itemtype="http://schema.org/WebSite">
@@ -34,7 +42,7 @@ $related_query = new WP_Query($args);
         <main class="main">
           <div class="archive-layout">
             <div class="archive-layout__content">
-              <?php if (have_posts()): ?>
+              <?php if (date("Y-m-d") > $related_from_date && have_posts()): ?>
               <div class="details">
                 <?php if (has_post_thumbnail()): ?>
                 <figure class="details__media">
