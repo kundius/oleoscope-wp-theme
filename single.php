@@ -54,7 +54,7 @@ $related_from_date = "2024-06-25";
                 <div class="details__content content">
                   <?php the_content() ?>
                 </div>
-                <?php if (date("Y-m-d") > $related_from_date && $related_query->have_posts()): ?>
+                <?php if (get_the_date("Y-m-d") > $related_from_date && $related_query->have_posts()): ?>
                 <div class="details-related">
                   <div class="details-related__title">Похожие статьи по теме:</div>
                   <ul class="details-related__list">
