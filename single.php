@@ -1,7 +1,7 @@
 <?php
 global $post;
 
-$related_tax = 'category';
+$related_tax = 'post_tag';
 $related_tax_ids = wp_get_object_terms($post->ID, $related_tax, ['fields' => 'ids']);
  
 $args = [
