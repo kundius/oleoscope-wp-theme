@@ -716,6 +716,16 @@ img {
     border-right: 0;
     border-left: 0;
   }
+
+  .alignleft {
+    float: left;
+    margin-right: 12pt;
+  }
+
+  .alignright {
+    float: right;
+    margin-left: 12pt;
+  }
 }
 
 .details-related {
