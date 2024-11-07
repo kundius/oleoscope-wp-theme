@@ -13,8 +13,8 @@
         <main class="main">
           <div class="archive-layout">
             <div class="archive-layout__content">
-              <?php if (have_posts()): ?>
-              <h1><?php the_title() ?></h1>
+              <?php if (have_posts()):?>
+              <?php if (get_the_ID() !== 861) echo '<h1>' . get_the_title() . '</h1>' ?>
               <div class="content">
                 <?php the_content() ?>
               </div>

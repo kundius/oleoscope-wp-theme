@@ -193,9 +193,93 @@ LIMIT 1000";
         " GROUP BY YEAR(`delivery_date`), MONTH(`delivery_date`)" .
         " ORDER BY delivery_date LIMIT 1000";
 
-    //	if ( current_user_can( 'administrator' ) ) {
-    //	  echo $query;
-    //  }
+    $query_all = "SELECT *" .
+        " FROM " . $table .
+        " WHERE " . $where .
+        " ORDER BY date LIMIT 1000";
+
+    $resAll = $mysqli->query($query_all);
+    while ($rowAll = $resAll->fetch_assoc()) {
+        if (current_user_can('administrator')) {
+            //print_r($rowAll);
+        }
+    }
+
+    $currentYear = date("Y");
+
+//    if (current_user_can('administrator')) {
+//        print_r($currentYear);
+//        print_r($filter_period);
+//    }
+
+
+    if ($currentYear > $filter_period) {
+        $effective_query = "
+        SELECT *,
+            date as effective_date,
+            ROUND(AVG(price), 0) as avg_price
+        FROM $table
+        WHERE $where
+            AND price != 0
+        GROUP BY
+            date
+        ORDER BY
+            effective_date
+        LIMIT 1000
+        ";
+
+    } else {
+
+        $effective_query = "
+        SELECT *,
+            CASE
+                WHEN delivery_date <= CURRENT_DATE AND YEAR(date) = $filter_period
+                    THEN date
+                WHEN (delivery_date > CURRENT_DATE AND YEAR(delivery_date) = $filter_period) 
+                    THEN DATE_FORMAT(CONCAT(YEAR(delivery_date), '-', MONTH(delivery_date), '-15'), '%Y-%m-%d')
+            END as effective_date,
+            ROUND(AVG(price), 0) as avg_price
+        FROM 
+            $table
+        WHERE $where AND price != 0
+        GROUP BY effective_date
+        ORDER BY effective_date 
+        LIMIT 1000
+        ";
+    }
+
+
+    $result_by_day = $mysqli->query($effective_query);
+
+    $chart_data_by_day = array();
+    $count = 0;
+    while ($row_by_day = $result_by_day->fetch_assoc()) {
+
+        if ( current_user_can( 'administrator' ) ) {
+            //print_r($row_by_day);
+        }
+
+        if (!isset($chart_name)) { // пишем данные только в первом цикле
+            $chart_name = $row_by_day['name'] . ' / ';
+            $chart_name .= ((isset($country) && $country == 'Russia') ? $row_by_day['district'] : $row_by_day['basis']) . ' ';
+            $chart_name .= $row_by_day['country'];
+            $chart_name .= ((isset($country) && $country == 'Russia') ? '' : ('. Обзор цен от ' . $row_by_day['delivery_date'])) . ' ';
+            $units      = $row_by_day['units'];
+        }
+
+        $date1 = strtotime(date("Y-m-d"));
+        $date2 = strtotime($row_by_day['effective_date']);
+
+        if ($row_by_day['effective_date'] != '') {
+            $chart_data_by_day[] = sprintf("{ 'd' : '%s', 'p' : %s, 'p-dash' : %s }", $row_by_day['effective_date'], $row_by_day['avg_price'], ($date2 >= $date1) ? 5 : 0);
+        }
+
+        $count = $count + 1;
+    }
+
+    if ( current_user_can( 'administrator' ) ) {
+        //print_r($chart_data_by_day);
+    }
 
     $result = $mysqli->query($query);
     if (empty($result)) {
@@ -226,31 +310,32 @@ LIMIT 1000";
 
     //   $chart_data2 = array();
 
-    while ($row = $result->fetch_assoc()) {
-
-        if (!isset($chart_name)) { // пишем данные только в первом цикле
-            $chart_name = $row['name'] . ' / ';
-            $chart_name .= ((isset($country) && $country == 'Russia') ? $row['district'] : $row['basis']) . ' ';
-            $chart_name .= $row['country'];
-            $chart_name .= ((isset($country) && $country == 'Russia') ? '' : ('. Обзор цен от ' . $row['delivery_date'])) . ' ';
-            $units      = $row['units'];
-        }
-
-        $price         = $row['avg_price'];
-        $chart_stats[] = $row;
-        if ($price != 0) {
-            $date1 = strtotime(date("Y-m"));
-            $date2 = strtotime($row['monthDeliveryDate']);
-
-            //			$chart_data[] = sprintf("{ 'd' : '%s', 'p' : %s }", mb_convert_case( $date_m[ date('n', strtotime($row['mydate']) ) - 1 ] , MB_CASE_TITLE, "UTF-8"), $price);
-            $chart_data[] = sprintf("{ 'd' : '%s', 'p' : %s, 'p-dash' : %s }", mb_convert_case($date_m[date('n', strtotime($row['mydate'])) - 1], MB_CASE_TITLE, "UTF-8") . ' ' . date('Y', strtotime($row['mydate'])), $price, ($date2 >= $date1) ? 5 : 0);
-        }
-    } // end while
+//    while ($row = $result->fetch_assoc()) {
+//
+//        if (!isset($chart_name)) { // пишем данные только в первом цикле
+//            $chart_name = $row['name'] . ' / ';
+//            $chart_name .= ((isset($country) && $country == 'Russia') ? $row['district'] : $row['basis']) . ' ';
+//            $chart_name .= $row['country'];
+//            $chart_name .= ((isset($country) && $country == 'Russia') ? '' : ('. Обзор цен от ' . $row['delivery_date'])) . ' ';
+//            $units      = $row['units'];
+//        }
+//
+//        $price         = $row['avg_price'];
+//        $chart_stats[] = $row;
+//        if ($price != 0) {
+//            $date1 = strtotime(date("Y-m"));
+//            $date2 = strtotime($row['monthDeliveryDate']);
+//
+//            //			$chart_data[] = sprintf("{ 'd' : '%s', 'p' : %s }", mb_convert_case( $date_m[ date('n', strtotime($row['mydate']) ) - 1 ] , MB_CASE_TITLE, "UTF-8"), $price);
+//            $chart_data[] = sprintf("{ 'd' : '%s', 'p' : %s, 'p-dash' : %s }", mb_convert_case($date_m[date('n', strtotime($row['mydate'])) - 1], MB_CASE_TITLE, "UTF-8") . ' ' . date('Y', strtotime($row['mydate'])), $price, ($date2 >= $date1) ? 5 : 0);
+//        }
+//    } // end while
 ?>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/amcharts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/serial.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/themes/light.js" integrity="sha256-/8ddAVEjLXcC1w4acoVN5Xpp308AmeYauva/ws3o8SE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/lang/ru.js"></script>
 
     <div class="chart">
         <header class="chart__filter">
@@ -346,72 +431,158 @@ LIMIT 1000";
             </script>
         </header>
         <div class="chart-comment">Средние цены, <?= $units ?></div>
+        <div id="chart_by_day" style="height: 400px; padding-bottom: 50px"></div>
 
-        <div id="chart" style="height: 400px"></div>
     </div>
 
     <script>
         // World
-
-        const chartData = [
-            <?php echo join(',' . PHP_EOL, $chart_data) ?>
-        ];
         const color = '#7fbc2b';
 
-        // am4core.useTheme(am4themes_material);
+        const chartDataByDay = [
+            <?php echo join(',' . PHP_EOL, $chart_data_by_day) ?>
+        ];
+        //console.log(chartDataByDay);
 
-        var chart = AmCharts.makeChart('chart', {
-            type: "serial",
-            theme: "light",
-            language: "ru",
-            color: "#333333",
-            //"titles": [
-            //    {
-            //        "text": '<? //= $chart_title
-                                ?>//',
-            //        "size": 15,
-            //        "color": "#626363",
-            //        "bold": false,
-            //    },
-            //],
-            legend: {
-                useGraphSettings: true
-            },
-            dataProvider: chartData,
-            chartCursor: {},
-            allLabels: [],
-            balloon: {},
-            valueAxes: [{
-                id: 'v1',
-                // "minimum": 0
-            }],
-            graphs: [{
-                id: "g2",
-                valueAxis: 'v1',
-                bullet: "round",
-                bulletBorderAlpha: 1,
-                bulletSize: 5,
-                bulletColor: '#ffffff',
-                hideBulletsCount: 50,
-                lineThickness: 2,
-                valueField: 'p',
-                //title : "<?php //echo $chart_name
-                            ?>//",
-                balloonText: "[[value]] <?php echo $units; ?>",
-                dashLengthField: 'p-dash',
-                lineColor: color,
-                useLineColorForBulletBorder: true,
-                visibleInLegend: false
-            }],
-            categoryField: 'd',
-            categoryAxis: {
-                autoRotateAngle: true,
-                labelRotation: 45
-            },
+        if (chartDataByDay.length === 0) {
+            const container = document.getElementById('chart_by_day');
+            container.innerText = 'Нет результатов по запросу';
+        } else {
 
-            // 'lineColor': '#00ff00',
-            // 'chooseGraphColor' : '#5c9314',
-        });
+            // Преобразование данных для использования с amCharts
+            let formattedData = chartDataByDay.map((item, index) => {
+                return {
+                    date: item.d,
+                    price: item.p,
+                    pDash: item['p-dash']
+                };
+            });
+
+            // Найти индекс последнего элемента, где p-dash === 0
+            const lastIndex = formattedData.map((item, index) => item['pDash'] === 0 ? index : -1).filter(index => index !== -1).pop();
+
+            // Если такой элемент найден, изменить его p-dash на 5
+            if (lastIndex !== undefined) {
+                formattedData[lastIndex]['pDash'] = 5;
+            }
+
+            //console.log(formattedData);
+
+            // Добавление фиктивной точки перед первой датой, если её нет
+            // Добавление половины месяца к первой дате
+            var firstDate = new Date(formattedData[0].date);
+            var halfMonth = 25; // Примерно половина месяца
+            var paddedStartDate = new Date(firstDate.getTime() - halfMonth * 24 * 60 * 60 * 1000); // Отнимаем половину месяца в миллисекундах
+            formattedData.unshift({
+                date: paddedStartDate.toISOString().split('T')[0],
+                price: null,
+                pDash: 0// Здесь можно использовать любое фиктивное значение или null
+            });
+
+
+            // Добавление фиктивной точки для последней даты, если её нет
+            var lastDate = new Date(formattedData[formattedData.length - 1].date);
+            var paddedEndDate = new Date(lastDate.getTime() + halfMonth * 24 * 60 * 60 * 1000); // Добавляем половину месяца в миллисекундах
+            formattedData.push({
+                date: paddedEndDate.toISOString().split('T')[0],
+                price: null,
+                pDash: 5
+            });
+
+            var currentDate = new Date(); // Текущая дата
+
+            function formatDateForBalloon(date) {
+                date = new Date(date)
+                if (date > currentDate) {
+                    return formatRussianDate(date, "MMMM YYYY");
+                } else {
+                    return formatRussianDate(date, "MMM, DD YYYY");
+                }
+            }
+
+            // Создание объекта для хранения индексов дат
+            var dateIndexMap = {};
+            formattedData.forEach((item, index) => {
+                dateIndexMap[new Date(item.date).toLocaleDateString('ru-RU')] = index;
+            });
+
+
+
+            // Преобразование имени месяца на русский язык
+            function formatRussianDate(date, format) {
+                var months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+                var shortMonths = ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"];
+                var day = date.getDate();
+                var month = date.getMonth();
+                var year = date.getFullYear();
+
+                if (format === "MMMM YYYY") {
+                    return months[month] + " " + year;
+                } else if (format === "MMM, DD YYYY") {
+                    return shortMonths[month] + ", " + (day < 10 ? "0" + day : day) + " " + year;
+                }
+            }
+
+            var chartByDay = AmCharts.makeChart("chart_by_day", {
+                type: "serial",
+                theme: "light",
+                dateDateFormat: "DD.MM.YYYY",
+                language: "ru",
+                color: "#333333",
+                legend: {
+                    useGraphSettings: true
+                },
+                dataProvider: formattedData,
+                chartCursor: {
+                    categoryBalloonFunction: formatDateForBalloon
+                },
+                allLabels: [],
+                balloon: {},
+                valueAxes: [{
+                    id: 'v1',
+                    // "minimum": 0
+                }],
+                graphs: [{
+                    id: "g2",
+                    valueAxis: 'v1',
+                    bullet: "round",
+                    bulletBorderAlpha: 1,
+                    bulletSize: 5,
+                    bulletColor: '#ffffff',
+                    hideBulletsCount: 50,
+                    lineThickness: 2,
+                    valueField: 'price',
+                    //title : "<?php //echo $chart_name
+                    ?>//",
+                    balloonText: "[[value]] <?php echo $units; ?>",
+                    dashLengthField: 'pDash',
+                    lineColor: color,
+                    useLineColorForBulletBorder: true,
+                    visibleInLegend: false
+                }],
+                categoryField: 'date',
+                categoryAxis: {
+                    autoRotateAngle: true,
+                    labelRotation: 45,
+                    autoGridCount: false,
+                    gridCount: 12,
+                    gridPosition: 'start',
+                    parseDates: true,
+                    labelFunction: function(valueText, date, categoryAxis) {
+                        // Отображать месяц и год только для первого дня месяца
+
+                        let index = dateIndexMap[`${new Date(date).toLocaleDateString('ru-RU')}`];
+
+                        if (date.getDate() === 1 || index === 0) {
+                            return formatRussianDate(date, 'MMMM YYYY');
+                        }
+                        // Для остальных дней возвращать пустую строку
+                        return "";
+                    },
+                },
+            });
+        }
+
     </script>
     <?php
     $time_exec = '(' . round(microtime(true) - $time_start, 4) . 's ) <br>' . PHP_EOL;

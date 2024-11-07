@@ -92,6 +92,11 @@ add_theme_support('html5', [
     });
 });
 
+// скрывает вкладку Редактор тем в админке
+function remove_theme_editor_menu() {
+    remove_submenu_page('themes.php', 'theme-editor.php');
+}
+add_action('admin_menu', 'remove_theme_editor_menu', 999);
 
 // SVG
 add_filter('wp_kses_allowed_html', function ($tags) {
